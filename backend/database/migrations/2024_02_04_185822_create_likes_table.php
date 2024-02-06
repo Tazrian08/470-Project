@@ -19,13 +19,13 @@ return new class extends Migration
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('post_id')->default(NULL)->nullable();
             $table->foreign('post_id')
                 ->references('id') 
                 ->on('posts')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->unsignedBigInteger('comment_id');
+            $table->unsignedBigInteger('comment_id')->default(NULL)->nullable();
             $table->foreign('comment_id')
                 ->references('id') 
                 ->on('comments')
