@@ -20,6 +20,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->string('path');
+            $table->boolean('active');
             $table->timestamps();
         });
     }

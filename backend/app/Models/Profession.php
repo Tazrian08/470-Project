@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Profession extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'start',
+        'end', 
+    ];
+
+
     public function user(){
         return $this->belongsTo(User::class);
         
