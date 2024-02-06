@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Chatbox extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'admin_id',
+        'name',
+    ];
+    
     public function admin(){
         return $this->belongsTo(User::class, 'admin_id') ;
         

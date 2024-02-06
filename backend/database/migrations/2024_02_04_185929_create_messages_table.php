@@ -26,7 +26,7 @@ return new class extends Migration
                 ->on('chatboxes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->longText('message')->default(NULL)->nullable();
+            $table->longText('message');
             $table->timestamps();
         });
     }

@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Notification extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'sender_id',
+        'description', 
+    ];
+
+
     public function sender(){
         return $this->belongsTo(User::class, 'sender_id');
         
