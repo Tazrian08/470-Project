@@ -15,13 +15,13 @@ export class ProfileComponent {
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) 
   {
     this.route.params.subscribe(params => {
-      this.id = params['id'];
+      this.profile_id = params['id'];
     });
   }
 
   user:any
   auth: boolean=false
-  id=""
+  profile_id=""
 
 
   ngOnInit(): void {
@@ -29,7 +29,7 @@ export class ProfileComponent {
     this.http.get('http://localhost:8000/api/user', {withCredentials: true}).subscribe(
       (res: any) => {
         console.log(res)
-        this.user=res.user
+        this.user=res
 
         Emitters.authEmitter.emit(true);
       });

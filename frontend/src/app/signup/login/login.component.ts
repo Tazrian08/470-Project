@@ -41,26 +41,15 @@ export class LoginComponent {
           (res: any) => {
           console.log(res)
           this.id=res.id
-
-        Emitters.authEmitter.emit(true);
-      });
-    Emitters.authEmitter.subscribe(
-      (data: any) => {
-        this.auth= data;
-      });
-          this.goToProfile()
-      }
-          
+          this.router.navigate(['/profile', this.id]);
 
 
       });
+    }
+  });
       console.log("This runs")
       
     
   }
 
-  goToProfile(): void {
-    this.router.navigate(['/profile', this.id]);
-
-  }
 }
