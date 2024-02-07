@@ -18,7 +18,7 @@ class UserController extends Controller
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'username' => $request->input('username'),
-            'dob' => Carbon::now(),
+            'dob' => $request->input('date'),
             'about' => $request->input('about'),
             'contact' => $request->input('contact'),
             'blood_type' => $request->input('blood_type'),
