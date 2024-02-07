@@ -17,6 +17,8 @@ export class LoginComponent {
   Login: boolean =true
   email: string ="";
   password: string ="";
+  id=""
+  auth: boolean=false
 
   login(){
     
@@ -34,10 +36,19 @@ export class LoginComponent {
           alert('Login failed. Enter Valid username and/or Password')
       } else {
         console.log(resultData)
-          //alert(resultData['user'].name + " has been logged in");
           Emitters.authEmitter.emit(true);
-          //Emitters.dataEmitter.emit(resultData['user']) FOR SENDING DATA TO ANOTHER COMPONENT
-          this.router.navigate(['/profile'])
+          this.http.get('http://localhost:8000/api/user', {withCredentials: true}).subscribe(
+          (res: any) => {
+          console.log(res)
+          this.id=res.id
+
+        Emitters.authEmitter.emit(true);
+      });
+    Emitters.authEmitter.subscribe(
+      (data: any) => {
+        this.auth= data;
+      });
+          this.goToProfile()
       }
           
 
@@ -46,5 +57,10 @@ export class LoginComponent {
       console.log("This runs")
       
     
+  }
+
+  goToProfile(): void {
+    this.router.navigate(['/profile', this.id]);
+
   }
 }

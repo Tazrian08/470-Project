@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Emitters } from '../Emitters/emitters';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -10,13 +10,18 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent {
 
-  constructor(private http: HttpClient, private router: Router) 
+  
+
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) 
   {
-    
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+    });
   }
 
   user:any
   auth: boolean=false
+  id=""
 
 
   ngOnInit(): void {
