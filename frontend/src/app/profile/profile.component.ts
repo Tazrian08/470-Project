@@ -10,6 +10,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProfileComponent {
 
+  user:any
+  auth: boolean=false
+  profile_id=""
+
   
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) 
@@ -19,9 +23,7 @@ export class ProfileComponent {
     });
   }
 
-  user:any
-  auth: boolean=false
-  profile_id=""
+
 
 
   ngOnInit(): void {
