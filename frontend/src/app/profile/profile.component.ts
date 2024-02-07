@@ -13,6 +13,7 @@ export class ProfileComponent {
   user:any
   auth: boolean=false
   profile_id=""
+  posts:any
 
   
 
@@ -20,6 +21,11 @@ export class ProfileComponent {
   {
     this.route.params.subscribe(params => {
       this.profile_id = params['id'];
+      this.http.get(`http://localhost:8000/api/posts/${this.profile_id}`).subscribe(
+        (data: any) => {
+          this.posts=data
+          console.log(this.posts)
+        })
     });
   }
 
@@ -41,5 +47,8 @@ export class ProfileComponent {
       });
     
   }
+
+
+
 
 }

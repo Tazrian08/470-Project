@@ -35,9 +35,13 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        $posts=Post::where("user_id", $id)
+        ->with("comment","like","comment.like")
+        ->get();
+
+        return response()->json($posts);
     }
 
     /**
