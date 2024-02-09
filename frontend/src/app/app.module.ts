@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProfileComponent } from './profile/profile.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PostformComponent } from './posts/postform/postform.component';
+import { AddpropicComponent } from './addpropic/addpropic.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PostformComponent } from './posts/postform/postform.component';
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    PostformComponent
+    PostformComponent,
+    AddpropicComponent
   ],
   imports: [
     BrowserModule,
