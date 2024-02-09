@@ -1,4 +1,4 @@
-{{profile_id}}
+<!-- {{profile_id}}
 {{user?.id}}
 {{name}}
 {{username}}
@@ -7,4 +7,32 @@
 {{gender}}
 {{blood}}
 {{contact}}
-{{email}}
+{{email}} -->
+<!-- <div class="container">  -->
+<div class="photo-container"> 
+    <div class="container1"> 
+        <nav class="navbar">
+            <ul>
+                <li><a href="#">Explore</a></li>
+                <li><a [routerLink]="['/travel-packages']">About</a></li>
+                <li><a [routerLink]="['/hotels']">Contact</a></li>
+                <li><a [routerLink]="['/flight']">GitHub</a></li>
+                <li><a [routerLink]="['/destination/index']">Collaborations</a></li>
+            </ul>
+        </nav>
+        {{profile_id}}
+            {{user?.id}}
+            {{name}}
+            {{username}}
+            {{about}}
+            <p>{{dob}}
+            {{gender}}
+            {{blood}}
+            {{contact}}
+            {{email}}</p>
+            
+    </div>
+    <div class="container2">
+        
+    </div> 
+
