@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Emitters } from '../Emitters/emitters';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,29 +10,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProfileComponent {
 
-  user:any
-  auth: boolean=false
-  profile_id=""
-  posts:any
+  user: any;
+  auth: boolean = false;
+  profile_id = "";
+  posts: any[] = [];
+  currentPage = 1;
+  pageSize = 10;
 
   
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) 
-  {
-    this.route.params.subscribe(params => {
-      this.profile_id = params['id'];
-      this.http.get(`http://localhost:8000/api/posts/${this.profile_id}`).subscribe(
-        (data: any) => {
-          this.posts=data
-          console.log(this.posts)
-        })
-    });
-  }
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute){}
 
 
 
 
   ngOnInit(): void {
+
+    this.loadPosts();
 
     this.http.get('http://localhost:8000/api/user', {withCredentials: true}).subscribe(
       (res: any) => {
@@ -47,7 +41,29 @@ export class ProfileComponent {
       });
     
   }
+  loadPosts() {
+    this.route.params.subscribe(params => {
+      this.profile_id = params['id'];
+      this.http.get(`http://localhost:8000/api/posts/${this.profile_id}?page=${this.currentPage}&pageSize=${this.pageSize}`).subscribe(
+        (data: any) => {
+          this.posts.push(...data); // Append new posts to existing ones
+          console.log(this.posts);
+        });
+    });
+  }
 
+
+  // Function to detect scroll to the bottom of the page
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: any) {
+    const pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+    const max = document.documentElement.scrollHeight;
+    if (pos === max) {
+      // Load more posts when scrolled to the bottom
+      this.currentPage++;
+      this.loadPosts();
+    }
+  }
 
 
 
