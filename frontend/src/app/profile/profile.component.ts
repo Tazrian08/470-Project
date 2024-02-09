@@ -11,6 +11,7 @@ import { PostformdialogueService } from '../posts/postformdialogue.service';
 })
 export class ProfileComponent {
 
+  authuser: any
   user: any;
   auth: boolean = false;
   profile_id = "";
@@ -42,15 +43,7 @@ export class ProfileComponent {
     this.http.get('http://localhost:8000/api/user', {withCredentials: true}).subscribe(
       (res: any) => {
         console.log(res)
-        this.user=res
-        this.name= res.name;
-        this.email =res.email;
-        this.username =res.username;
-        this.dob =res.dob;
-        this.gender =res.gender;
-        this.contact =res.contact
-        this.blood =res.blood_type;
-        this.about =res.about;
+        this.authuser=res
         console.log(res.name)
         Emitters.authEmitter.emit(true);
       });
@@ -65,7 +58,16 @@ export class ProfileComponent {
       this.profile_id = params['id'];
       this.http.get(`http://localhost:8000/api/profuser/${this.profile_id}?page=${this.currentPage}&pageSize=${this.pageSize}`).subscribe(
         (data: any) => {
-          this.posts.push(...data); // Append new posts to existing ones
+        this.user=data[0]
+        this.name= data[0].name;
+        this.email =data[0].email;
+        this.username =data[0].username;
+        this.dob =data[0].dob;
+        this.gender =data[0].gender;
+        this.contact =data[0].contact
+        this.blood =data[0].blood_type;
+        this.about =data[0].about;
+        this.user[0].posts.push(...data); // Append new posts to existing ones
           console.log(this.posts);
         });
     });
