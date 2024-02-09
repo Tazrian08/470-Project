@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-postform',
@@ -6,11 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./postform.component.css']
 })
 export class PostformComponent {
-  username=""
-  name=""
-  email=""
+  username = "";
+  name = "";
+  email = "";
 
+  constructor(public dialogRef: MatDialogRef<PostformComponent>) {}
 
-  register(){}
+  register() {
+    // Add your register logic here if needed
+
+    // Close the dialog when registration is complete
+    this.dialogRef.close();
+  }
 
 }

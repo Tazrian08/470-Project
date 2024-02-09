@@ -87,6 +87,12 @@ openDialog(): void {
   this.dialogService.openDialog();
 }
 
+closeDialog(): void {
+  this.dialogService.closeDialog();
+}
+
+
+
 
 
 }

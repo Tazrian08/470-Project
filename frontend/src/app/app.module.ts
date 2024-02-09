@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,7 +29,7 @@ import { PostformComponent } from './posts/postform/postform.component';
     HttpClientModule,
     NgbModule,
     NoopAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
     
   ],
   providers: [],
