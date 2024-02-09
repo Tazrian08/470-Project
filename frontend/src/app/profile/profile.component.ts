@@ -2,6 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { Emitters } from '../Emitters/emitters';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PostformdialogueService } from '../posts/postformdialogue.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +20,7 @@ export class ProfileComponent {
 
   
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute){}
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute,private dialogService: PostformdialogueService){}
 
 
 
@@ -80,6 +81,10 @@ onScroll(event: any) {
     this.currentPage++;
     this.loadPosts();
   }
+}
+
+openDialog(): void {
+  this.dialogService.openDialog();
 }
 
 

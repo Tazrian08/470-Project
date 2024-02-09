@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,13 +11,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './signup/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProfileComponent } from './profile/profile.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { PostformComponent } from './posts/postform/postform.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    PostformComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +28,8 @@ import { ProfileComponent } from './profile/profile.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
+    NoopAnimationsModule,
+    MatDialogModule
     
   ],
   providers: [],
