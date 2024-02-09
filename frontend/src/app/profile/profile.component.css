@@ -1,6 +1,14 @@
 @font-face {
-    font-family: 'Alta';
-    src: url('/assets/fonts/Alta-Regular.ttf') format('truetype'); 
+    font-family: 'Playlist';
+        src: url('/assets/fonts/Playlist-Script.woff2') format('woff2'), 
+            url('/assets/fonts/Playlist-Caps.woff2') format('woff2'), 
+            url('/assets/fonts/Playlist-Ornament.woff2') format('woff2'), 
+            url('/assets/fonts/Playlist-Ornament.woff') format('woff'), 
+            url('/assets/fonts/Playlist-Script.woff') format('woff')    
+            url('/assets/fonts/Playlist-Caps.woff') format('woff'); /* Older Browsers */
+        /* Add additional font formats (e.g., .ttf, .otf) for better browser compatibility */
+    font-weight: normal;
+    font-style: normal;
 }
 
 .photo-container, .photo-container2 {
@@ -64,6 +72,34 @@
     margin-top: -16vh; 
     background-color: black; 
     z-index: 2; 
-    border-top-left-radius: 50vw 30vh;
-    border-top-right-radius: 50vw 30vh; 
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    border-top-left-radius: 60vw 36vh;
+    border-top-right-radius: 60vw 40vh; 
+}
+.mini-container1 {
+    font-family: 'Playlist', sans-serif;
+    width: 10vw; 
+    height: 10vh; 
+    color: #ffffff;
+    display: flex;
+    font-size: 10vh;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transform: translateX(-5%);
+    top: -20vh; 
+}
+.container3{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 30vh; 
+    height: 30vh; 
+    background-color: whitesmoke;
+    z-index: 3;
+    border-radius: 50%;
+    align-items: center;
 }
