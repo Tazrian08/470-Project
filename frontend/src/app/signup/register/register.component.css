@@ -1,0 +1,62 @@
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+.reg-container {
+  font-family: Arial, sans-serif;
+  background-image: url('/assets/images/register.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container for the registration form */
+.registration-container {
+  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+  border-radius: 10px;
+  padding: 20px;
+  height: 100vh;
+  width: 60vh;
+  backdrop-filter: blur(10px); /* Fuzzy background effect */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+/* Input fields */
+.input-field {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Register button */
+.register-btn {
+  width: 100%;
+  background-color: #007bff; /* Blue */
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Register button hover effect */
+.register-btn:hover {
+  background-color: #0056b3; /* Darker blue */
+}
+
+/* Optional: Add more specific styles for responsiveness */
+@media (max-width: 768px) {
+  .login-container {
+      width: 80%;
+  }
+}
