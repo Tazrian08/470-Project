@@ -146,7 +146,7 @@
     align-items: center;
     position: relative;
     transform: translateX(0%);
-    top: 8vh;
+    top: 3vh;
     margin: 0;
     flex-direction: column; 
 }
