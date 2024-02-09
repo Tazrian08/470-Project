@@ -58,6 +58,7 @@ export class ProfileComponent {
       this.profile_id = params['id'];
       this.http.get(`http://localhost:8000/api/profuser/${this.profile_id}?page=${this.currentPage}&pageSize=${this.pageSize}`).subscribe(
         (data: any) => {
+        console.log(data)
         this.user=data[0]
         this.name= data[0].name;
         this.email =data[0].email;
@@ -67,8 +68,8 @@ export class ProfileComponent {
         this.contact =data[0].contact
         this.blood =data[0].blood_type;
         this.about =data[0].about;
-        this.user[0].posts.push(...data); // Append new posts to existing ones
-          console.log(this.posts);
+        this.posts.push(...data[0].post); 
+        console.log(this.posts);
         });
     });
   }
