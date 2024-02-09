@@ -23,7 +23,7 @@ class UserController extends Controller
             'contact' => $request->input('contact'),
             'blood_type' => $request->input('blood_type'),
             'gender' => $request->input('gender'),
-            
+
         ]);
         return response()->json(['message'=>'User created!','user'=>$user]);
 
@@ -46,8 +46,17 @@ class UserController extends Controller
         ])->withCookie($cookie);
     }
 
+    public function profuser($id)
+    {
+        $user=User::where("user_id", $id)
+        ->with("post","post.comment","post.like","post.comment.like","profession","hobby","skill","follower","followed")
+        ->get();
+
+        return response()->json($user);
+    }
+
     public function user()
-    {  
+    {
         return response()->json(Auth::user());
     }
 
@@ -60,5 +69,5 @@ class UserController extends Controller
         ])->withCookie($cookie);
     }
 
-    
+
 }

@@ -23,10 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //USER ROUTES
 Route::post("/register",[UserController::class,"register"]);
 Route::post("/login",[UserController::class,"login"]);
+Route::get("/profuser/{id}", [UserController::class,"profuser"]);
 
 
-//POST ROUTES
-Route::get("/posts/{id}", [PostController::class,"show"]);
+
 
 
 

@@ -26,9 +26,9 @@ export class ProfileComponent {
   blood : any;
   about : any;
 
-  
 
-  
+
+
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute,private dialogService: PostformdialogueService){}
 
@@ -42,7 +42,7 @@ export class ProfileComponent {
     this.http.get('http://localhost:8000/api/user', {withCredentials: true}).subscribe(
       (res: any) => {
         console.log(res)
-        this.user=res 
+        this.user=res
         this.name= res.name;
         this.email =res.email;
         this.username =res.username;
@@ -58,12 +58,12 @@ export class ProfileComponent {
       (data: any) => {
         this.auth= data;
       });
-    
+
   }
   loadPosts() {
     this.route.params.subscribe(params => {
       this.profile_id = params['id'];
-      this.http.get(`http://localhost:8000/api/posts/${this.profile_id}?page=${this.currentPage}&pageSize=${this.pageSize}`).subscribe(
+      this.http.get(`http://localhost:8000/api/profuser/${this.profile_id}?page=${this.currentPage}&pageSize=${this.pageSize}`).subscribe(
         (data: any) => {
           this.posts.push(...data); // Append new posts to existing ones
           console.log(this.posts);
