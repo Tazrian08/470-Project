@@ -16,6 +16,16 @@ export class ProfileComponent {
   posts: any[] = [];
   currentPage = 1;
   pageSize = 10;
+  name : any;
+  email : any;
+  username : any;
+  dob : any;
+  gender : any;
+  contact : any;
+  blood : any;
+  about : any;
+
+  
 
   
 
@@ -31,8 +41,16 @@ export class ProfileComponent {
     this.http.get('http://localhost:8000/api/user', {withCredentials: true}).subscribe(
       (res: any) => {
         console.log(res)
-        this.user=res
-
+        this.user=res 
+        this.name= res.name;
+        this.email =res.email;
+        this.username =res.username;
+        this.dob =res.dob;
+        this.gender =res.gender;
+        this.contact =res.contact
+        this.blood =res.blood_type;
+        this.about =res.about;
+        console.log(res.name)
         Emitters.authEmitter.emit(true);
       });
     Emitters.authEmitter.subscribe(
