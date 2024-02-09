@@ -54,16 +54,33 @@ export class ProfileComponent {
 
 
   // Function to detect scroll to the bottom of the page
+  // @HostListener('window:scroll', ['$event'])
+  // onScroll(event: any) {
+  //   const pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+  //   const max = document.documentElement.scrollHeight;
+  //   if (pos === max) {
+  //     // Load more posts when scrolled to the bottom
+  //     this.currentPage++;
+  //     this.loadPosts();
+  //   }
+  // }
+
+
+  //TEST
   @HostListener('window:scroll', ['$event'])
-  onScroll(event: any) {
-    const pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
-    const max = document.documentElement.scrollHeight;
-    if (pos === max) {
-      // Load more posts when scrolled to the bottom
-      this.currentPage++;
-      this.loadPosts();
-    }
+onScroll(event: any) {
+  console.log('Scroll event detected!');
+  const pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+  const max = document.documentElement.scrollHeight;
+  console.log('Current position:', pos);
+  console.log('Maximum position:', max);
+  if (pos === max) {
+    console.log('Reached bottom of page!');
+    // Load more posts when scrolled to the bottom
+    this.currentPage++;
+    this.loadPosts();
   }
+}
 
 
 
