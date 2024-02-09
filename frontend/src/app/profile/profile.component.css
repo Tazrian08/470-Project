@@ -5,8 +5,7 @@
             url('/assets/fonts/Playlist-Ornament.woff2') format('woff2'), 
             url('/assets/fonts/Playlist-Ornament.woff') format('woff'), 
             url('/assets/fonts/Playlist-Script.woff') format('woff')    
-            url('/assets/fonts/Playlist-Caps.woff') format('woff'); /* Older Browsers */
-        /* Add additional font formats (e.g., .ttf, .otf) for better browser compatibility */
+            url('/assets/fonts/Playlist-Caps.woff') format('woff'); 
     font-weight: normal;
     font-style: normal;
 }
