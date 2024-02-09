@@ -48,7 +48,7 @@ class UserController extends Controller
 
     public function profuser($id)
     {
-        $user=User::where("user_id", $id)
+        $user=User::where("id", $id)
         ->with("post","post.comment","post.like","post.comment.like","profession","hobby","skill","follower","followed")
         ->get();
 
