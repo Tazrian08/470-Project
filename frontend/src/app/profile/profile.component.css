@@ -195,6 +195,7 @@
     padding: 10px;
     border-radius: 5px;
     display: none; 
+    cursor: pointer;
 }
 
 .container3:hover .hover-message {
