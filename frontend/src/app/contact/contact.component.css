@@ -2,7 +2,7 @@
     background-color: rgba(255, 255, 255, 255);
   } */
   
-@font-face {
+  @font-face {
     font-family: 'Playlist';
         src: url('/assets/fonts/Playlist-Script.woff2') format('woff2'), 
             url('/assets/fonts/Playlist-Caps.woff2') format('woff2'), 
@@ -132,8 +132,8 @@
     position: absolute;
     transform: translateX(0%);
     top: 36vh; 
+    flex-direction: column;
 }
-
 .horizontal-list {
     list-style-type: none; 
     padding: 0; 

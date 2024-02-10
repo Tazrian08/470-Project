@@ -26,6 +26,7 @@ Route::post("/register",[UserController::class,"register"]);
 Route::post("/login",[UserController::class,"login"]);
 Route::get("/profuser/{id}", [UserController::class,"profuser"]);
 Route::get("/about/{id}", [UserController::class,"profuser"]);
+Route::get("/contact/{id}", [UserController::class,"profuser"]);
 
 
 //PROFILE PIC ROUTES
