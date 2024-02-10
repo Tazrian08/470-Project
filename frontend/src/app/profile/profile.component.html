@@ -7,7 +7,6 @@
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">GitHub</a></li>
                 <li><a href="#">Collaborations</a></li>
-                <button (click)="openpropic()">Add Profile Pic</button>
                 <!-- <button (click)="openDialog()" class="logout-button">Button</button> -->
             </ul>
         </nav>
@@ -40,7 +39,9 @@
         </div>
         
     </div> 
-    <div class="container3">
+    <div *ngIf="profile_id==authuser.id"  (click)="openpropic()" class="container3"></div>
+    <div *ngIf="profile_id!=authuser.id" class="container3"></div> 
+    
         
-    </div> 
+    
 

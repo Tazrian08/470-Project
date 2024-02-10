@@ -15,16 +15,16 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class AddpropicComponent {
 
  
-  constructor(private sanitizer: DomSanitizer,@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<AddpropicComponent>){}
+  constructor(private sanitizer: DomSanitizer,@Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient, public dialogRef: MatDialogRef<AddpropicComponent>){}
 
 
   imageUrl!: SafeUrl;
 
-
+  selectedFile: any
 
   onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
-    this.previewImage(file);
+    this.selectedFile = event.target.files[0];
+    this.previewImage(this.selectedFile);
   }
 
   previewImage(file: File): void {
@@ -36,9 +36,24 @@ export class AddpropicComponent {
   }
 
   upload(): void {
-    // Implement your upload logic here
-    // Typically, you would send the file to a server using HTTP POST request
-    // You can use Angular's HttpClient for that
+    const formData = new FormData();
+    formData.append('id', this.data.id);
+
+    // Append the existing form data
+
+
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile, this.selectedFile.name);
+    }
+
+
+    this.http.post("http://localhost:8000/api/propic/create",formData).subscribe((resultData: any)=> 
+    {
+
+        console.log(resultData)
+        // this.router.navigate(['/login'])
+
+    });
   }
   register() {
     // Add your register logic here if needed
