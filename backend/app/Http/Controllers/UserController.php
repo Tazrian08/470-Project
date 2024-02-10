@@ -49,7 +49,7 @@ class UserController extends Controller
     public function profuser($id)
     {
         $user=User::where("id", $id)
-        ->with("post","post.comment","post.like","post.comment.like","profession","hobby","skill","follower","followed")
+        ->with("post","post.comment","post.like","post.comment.like","profession","hobby","skill","follower","followed","profilepic")
         ->get();
 
         return response()->json($user);

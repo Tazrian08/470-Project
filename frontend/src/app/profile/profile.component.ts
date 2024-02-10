@@ -29,6 +29,8 @@ export class ProfileComponent {
   about : any;
   id=""
 
+  profilepic:any
+
 
 
 
@@ -71,6 +73,8 @@ export class ProfileComponent {
         this.contact =data[0].contact
         this.blood =data[0].blood_type;
         this.about =data[0].about;
+        this.profilepic =data[0].profilepic[0];
+        console.log(this.profilepic)
         this.posts.push(...data[0].post); 
         console.log(this.posts);
         });

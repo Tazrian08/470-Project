@@ -184,6 +184,12 @@
     background-image: url('/assets/images/user 4.jpg');
     background-size: cover;
     background-position: center;
+    background-size: cover; 
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .hover-message {
     position: absolute;
