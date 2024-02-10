@@ -1,0 +1,51 @@
+<div class="photo-container"> 
+    <div class="container1"> 
+        <nav class="navbar">
+            <ul>
+                <li><a href="#">Explore</a></li>
+                <li *ngIf="profile_id == authuser?.id"><a [routerLink]="['/profile', authuser?.id]">Profile </a></li>
+                <li *ngIf="profile_id != authuser?.id"><a [routerLink]="['/profile', profile_id]">Profile </a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">GitHub</a></li>
+                <li><a href="#">Collaborations</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container2">
+        <div class="mini-container1">
+            <p>About</p>
+        </div> 
+        <div class="mini-container2">
+            <ul>
+                <li><strong>Name:</strong> {{ name }}</li>
+                <li><strong>Username:</strong> {{ username }}</li>
+                <li><strong>Date of Birth:</strong> {{ dob }}</li>
+                <li><strong>Gender:</strong> {{ gender }}</li>
+                <li><strong>Blood Type:</strong> {{ blood }}</li>
+                <li><strong>Contact:</strong> {{ contact }}</li>
+                <li><strong>Email:</strong> {{ email }}</li>
+                <li><strong>Hobbies:</strong>
+                    <ng-container *ngFor="let hobby of hobbies; let last = last">
+                      {{ hobby.type }}{{ !last ? ', ' : '' }}
+                    </ng-container>
+                <li>
+                <li><strong>Profession:</strong>
+                    <ng-container *ngFor="let profession of profession; let last = last">
+                        {{ profession.position }}{{ !last ? ', ' : '' }}
+                    </ng-container>
+                <li>
+                <li><strong>Skills:</strong>
+                    <ng-container *ngFor="let skills of skills; let last = last">
+                        {{ skills.type }}{{ !last ? ', ' : '' }}
+                    </ng-container>
+                <li>
+
+            </ul>
+        </div> 
+    </div> 
+
+    
+        
+    
+
+

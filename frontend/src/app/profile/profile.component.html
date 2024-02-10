@@ -3,7 +3,8 @@
         <nav class="navbar">
             <ul>
                 <li><a href="#">Explore</a></li>
-                <li><a href="#">About</a></li>
+                <li *ngIf="profile_id == authuser?.id"><a [routerLink]="['/about', authuser?.id]">About</a></li>
+                <li *ngIf="profile_id != authuser?.id"><a [routerLink]="['/about', profile_id]">About</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">GitHub</a></li>
                 <li><a href="#">Collaborations</a></li>
@@ -11,15 +12,7 @@
             </ul>
         </nav>
         {{profile_id}}
-            {{authuser?.id}}
-            {{name}}
-            {{username}}
-            <p>{{dob}}
-            {{gender}}
-            {{blood}}
-            {{contact}}
-            {{email}}</p>
-            
+        {{authuser?.id}}
     </div>
     <div class="container2">
         <div class="mini-container1">
