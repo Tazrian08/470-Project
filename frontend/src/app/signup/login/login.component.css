@@ -13,7 +13,7 @@
   background-position: center;
   height: 100vh;
   display: flex;
-  width: 200vh;
+  width: 100vw;
   justify-content: center;
   align-items: center;
 }
@@ -23,10 +23,12 @@
   background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
   border-radius: 10px;
   padding: 20px;
-  height: 30vh;
+  height: 40vh;
   width: 50vh;
   backdrop-filter: blur(10px); /* Fuzzy background effect */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  background-size: cover;
+  background-position: center;
 }
 
 /* Input fields */

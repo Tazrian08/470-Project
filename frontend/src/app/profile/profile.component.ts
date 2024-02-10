@@ -3,6 +3,7 @@ import { Emitters } from '../Emitters/emitters';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostformdialogueService } from '../posts/postformdialogue.service';
+import { PropicService } from '../addpropic/propic.service';
 
 @Component({
   selector: 'app-profile',
@@ -26,12 +27,13 @@ export class ProfileComponent {
   contact : any;
   blood : any;
   about : any;
+  id=""
 
 
 
 
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute,private dialogService: PostformdialogueService){}
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute,private dialogService: PostformdialogueService,private dialogService1: PropicService){}
 
 
 
@@ -60,6 +62,7 @@ export class ProfileComponent {
         (data: any) => {
         console.log(data)
         this.user=data[0]
+        this.id=data[0].id;
         this.name= data[0].name;
         this.email =data[0].email;
         this.username =data[0].username;
@@ -110,6 +113,16 @@ openDialog(): void {
 
 closeDialog(): void {
   this.dialogService.closeDialog();
+}
+
+
+openpropic(): void {
+  
+  this.dialogService1.openDialog(this.id);
+}
+
+closepropic(): void {
+  this.dialogService1.closeDialog();
 }
 
 

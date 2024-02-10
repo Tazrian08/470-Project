@@ -1,1 +1,9 @@
-<p>addpropic works!</p>
+{{data.id}}
+<div>
+    <input type="file" (change)="onFileSelected($event)">
+    <button (click)="upload()">Upload</button>
+    <div *ngIf="imageUrl">
+      <img [src]="imageUrl" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
+    </div>
+  </div>
+  
