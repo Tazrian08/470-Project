@@ -181,4 +181,22 @@
     z-index: 3;
     border-radius: 50%;
     align-items: center;
+    background-image: url('/assets/images/user 4.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.hover-message {
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    display: none; 
+}
+
+.container3:hover .hover-message {
+    display: block;
 }
