@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Profilepic;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreProfilepicRequest;
 use App\Http\Requests\UpdateProfilepicRequest;
 
@@ -19,9 +21,21 @@ class ProfilepicController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $user=User::find($request->id);
+
+        $image = time() . '-' . $user->name . '.' . $request->file('image')->extension();
+        $request->file('image')->move(public_path('images'), $image);
+        $path=asset('images/' . $image);
+
+
+        $profilepic=Profilepic::create([
+            'user_id' => $request->input('id'),
+            'path' => $path,
+            'active' => 0,
+        ]);
+        return response()->json(['image'=>$path]);
     }
 
     /**
