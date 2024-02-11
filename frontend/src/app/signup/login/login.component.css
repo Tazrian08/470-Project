@@ -1,64 +1,100 @@
-/* Reset default margin and padding */
+@font-face {
+  font-family: 'Caviar Dreams';
+          src:url('/assets/fonts/CaviarDreams.woff2') format('woff2'),
+          url('/assets/fonts/CaviarDreams.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body styles */
 .container1 {
-  font-family: Arial, sans-serif;
-  background-image: url('/assets/images/login.jpg');
+  font-family: 'Caviar Dreams', sans-serif;
   background-size: cover;
   background-position: center;
   height: 100vh;
   display: flex;
-  width: 100vw;
   justify-content: center;
   align-items: center;
 }
 
-/* Container for the login form */
-.login-container {
-  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
-  border-radius: 10px;
-  padding: 20px;
-  height: 40vh;
-  width: 50vh;
-  backdrop-filter: blur(10px); /* Fuzzy background effect */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
-  background-size: cover;
-  background-position: center;
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
 }
 
-/* Input fields */
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+
+.login-container {
+  font-family: 'Caviar Dreams', sans-serif;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, #8e2de2, #4a00e0); 
+  border-radius: 10px;
+  padding: 40px;
+  width: 350px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); 
+}
+
+
+.login-container h1 {
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+
 .input-field {
   width: 100%;
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-/* Login button */
-.login-btn {
-  width: 100%;
-  background-color: #4CAF50; /* Green */
-  color: white;
-  padding: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.3);
   border: none;
   border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.input-field::placeholder {
+  color: #fff;
+}
+
+.input-field:focus {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.login-btn {
+  width: 100%;
+  background-color: #fff;
+  color: #4a00e0; 
+  border: none;
+  border-radius: 5px;
+  font-size: 26px;
   cursor: pointer;
+  transition: background-color 0.3s ease; 
 }
 
-/* Login button hover effect */
 .login-btn:hover {
-  background-color: #45a049; /* Darker green */
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
-/* Optional: Add more specific styles for responsiveness */
 @media (max-width: 768px) {
   .login-container {
-      width: 80%;
+    width: 80%;
   }
 }
