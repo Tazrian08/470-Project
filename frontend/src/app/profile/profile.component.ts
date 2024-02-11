@@ -15,7 +15,7 @@ export class ProfileComponent {
   authuser: any
   user: any;
   auth: boolean = false;
-  profile_id = "";
+  profile_id : any;
   posts: any[] = [];
   currentPage = 1;
   pageSize = 10;
@@ -27,7 +27,8 @@ export class ProfileComponent {
   contact : any;
   blood : any;
   about : any;
-  id=""
+  id : any;
+  auth_id : any;
 
   profilepic:any
 
@@ -47,8 +48,9 @@ export class ProfileComponent {
     this.http.get('http://localhost:8000/api/user', {withCredentials: true}).subscribe(
       (res: any) => {
         console.log(res)
-        this.authuser=res
+        this.authuser=res;
         console.log(res.name)
+        this.auth_id = res.id;
         Emitters.authEmitter.emit(true);
       });
     Emitters.authEmitter.subscribe(
@@ -60,6 +62,7 @@ export class ProfileComponent {
   loadPosts() {
     this.route.params.subscribe(params => {
       this.profile_id = params['id'];
+      
       this.http.get(`http://localhost:8000/api/profuser/${this.profile_id}?page=${this.currentPage}&pageSize=${this.pageSize}`).subscribe(
         (data: any) => {
         console.log(data)
@@ -72,6 +75,7 @@ export class ProfileComponent {
         this.gender =data[0].gender;
         this.contact =data[0].contact
         this.blood =data[0].blood_type;
+        console.log(data[0].blood_type)
         this.about =data[0].about;
         this.profilepic =data[0].profilepic[0];
         console.log(this.profilepic)

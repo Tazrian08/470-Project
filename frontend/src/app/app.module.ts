@@ -14,6 +14,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PostformComponent } from './posts/postform/postform.component';
 import { AddpropicComponent } from './addpropic/addpropic.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AddpropicComponent } from './addpropic/addpropic.component';
     LoginComponent,
     ProfileComponent,
     PostformComponent,
-    AddpropicComponent
+    AddpropicComponent,
+    AboutComponent,
+    ContactComponent,  
   ],
   imports: [
     BrowserModule,
