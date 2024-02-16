@@ -22,6 +22,10 @@
         <div class="mini-container2">
             {{about}}
         </div>
+        <div class="mini-container4">
+            <button *ngIf="profile_id != authuser?.id && !follow" (click)="followUser(profile_id)" class="follow-button">Follow</button>
+            <p *ngIf="profile_id != authuser?.id && follow">Following</p>
+        </div>
         <div class="mini-container3">
             <p>Followers: 20<br></p>
             <ul class="horizontal-list">

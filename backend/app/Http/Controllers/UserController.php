@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Hobby;
+use App\Models\Follow;
 
 class UserController extends Controller
 {
@@ -80,7 +81,15 @@ class UserController extends Controller
         return response()->json(['message' => 'Hobby added successfully', 'hobby' => $hobby]);
     }
 
+    public function follow(Request $request)
+    {
+        $follow = Follow::create([
+            'follower_id' => $request->follower_id,
+            'followed_id' => $request->followed_id,
+        ]);
 
+        return response()->json(['message' => 'User followed successfully']);
+    }
 
 
 }
