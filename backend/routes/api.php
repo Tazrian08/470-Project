@@ -27,7 +27,7 @@ Route::post("/login",[UserController::class,"login"]);
 Route::get("/profuser/{id}", [UserController::class,"profuser"]);
 Route::get("/about/{id}", [UserController::class,"profuser"]);
 Route::get("/contact/{id}", [UserController::class,"profuser"]);
-
+Route::post("/hobbies", [UserController::class, "addHobby"]);
 
 //PROFILE PIC ROUTES
 Route::post("/propic/create",[ProfilepicController::class,"create"]);

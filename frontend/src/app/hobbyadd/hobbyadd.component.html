@@ -1,0 +1,20 @@
+<div class="photo-container">
+    <div class="container mt-4" >
+    
+        <div class="card">
+            <h1>Hobby Edit Form</h1>
+      
+      <form>
+        <div class="mb-3"> 
+        <div class="form-group">
+          <label>Hobby</label>
+          <input type="text" [(ngModel)]="type" [ngModelOptions]="{standalone: true}" class="form-control" id="type" placeholder="Enter Hobby">
+        </div>
+        </div>
+      
+          <button type="button" class="btn btn-primary mt-4" (click)="addHobbies()" >Submit</button>
+          <!--<p *ngIf="message !== null && message !== undefined">{{message.name}} has been registered</p> -->
+      </form>
+        </div>
+      <div>
+      </div>

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
+use App\Models\Hobby;
 
 class UserController extends Controller
 {
@@ -68,6 +69,18 @@ class UserController extends Controller
             'message' => 'Success'
         ])->withCookie($cookie);
     }
+
+    public function addHobby(Request $request)
+    {
+        $hobby = Hobby::create([
+            'user_id' => Auth::user(),
+            'type' =>$request->input('type'),
+        ]);
+
+        return response()->json(['message' => 'Hobby added successfully', 'hobby' => $hobby]);
+    }
+
+
 
 
 }

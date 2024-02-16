@@ -15,6 +15,7 @@
     <div class="container2">
         <div class="mini-container1">
             <p>About</p>
+            <button  *ngIf="profile_id == authuser?.id" type="submit" class="btn btn-primary mt-3 login-btn" [routerLink]="['/hobbies', authuser?.id]">Login</button>
         </div> 
         <div class="mini-container2">
             <ul>

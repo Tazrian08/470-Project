@@ -16,6 +16,7 @@ import { PostformComponent } from './posts/postform/postform.component';
 import { AddpropicComponent } from './addpropic/addpropic.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { HobbyaddComponent } from './hobbyadd/hobbyadd.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ContactComponent } from './contact/contact.component';
     PostformComponent,
     AddpropicComponent,
     AboutComponent,
-    ContactComponent,  
+    ContactComponent,
+    HobbyaddComponent,  
   ],
   imports: [
     BrowserModule,
