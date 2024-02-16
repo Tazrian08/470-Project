@@ -96,6 +96,12 @@ export class AboutComponent{
     }
 
   }
+
+  goToskillform(){
+
+    this.router.navigate(['/skills-form', this.user.id]);
+  
+  }
   
 
   }

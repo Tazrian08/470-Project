@@ -3,64 +3,54 @@
 namespace App\Http\Controllers;
 
 use App\Models\Skill;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreSkillRequest;
 use App\Http\Requests\UpdateSkillRequest;
 
 class SkillController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $skills = Skill::all();
+        return response()->json($skills);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    
+    public function store(Request $request)
     {
-        //
+        $skill=Skill::create([
+            'user_id' => $request->input('user_id'),
+            'type' => $request->input('type'),
+        ]);
+        return response()->json($skill, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreSkillRequest $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Skill $skill)
     {
-        //
+        return response()->json($skill);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Skill $skill)
+   
+    public function update(Request $request)
     {
-        //
+        
+        $skill=Skill::find( $request->input('id'));
+        $skill->update([
+            'type' => $request->input('type'),
+
+        ]);
+
+    
+        return response()->json($skill); 
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateSkillRequest $request, Skill $skill)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Skill $skill)
     {
-        //
+        $skill->delete();
+        return response()->json(null, 204);
     }
 }
