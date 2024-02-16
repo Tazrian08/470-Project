@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ProfilepicController;
 
 /*
@@ -27,7 +28,11 @@ Route::post("/login",[UserController::class,"login"]);
 Route::get("/profuser/{id}", [UserController::class,"profuser"]);
 Route::get("/about/{id}", [UserController::class,"profuser"]);
 Route::get("/contact/{id}", [UserController::class,"profuser"]);
-Route::get("/skills-form/{id}", [UserController::class,"profuser"]);
+
+
+//SKILL ROUTES
+Route::post("/skills-form", [SkillController::class,"store"]);
+Route::post("/skills-edit", [SkillController::class,"update"]);
 
 
 //PROFILE PIC ROUTES

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Emitters } from '../Emitters/emitters';
 
 @Component({
   selector: 'app-skills-form',
@@ -8,33 +9,110 @@ import { Router } from '@angular/router';
   styleUrls: ['./skills-form.component.css']
 })
 export class SkillsFormComponent {
-  skills: string[] = [];
+  // skills: string[] = [];
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router,  private route: ActivatedRoute ) {}
 
-  addSkill() {
-    this.skills.push('');
+
+  authuser: any
+  auth_id=""
+  auth:boolean=false
+  profile_id=""
+  user:any
+  skills:any
+  skill=""
+  skill_id=""
+
+  ngOnInit(): void {
+
+    this.loadUser();
+
+    this.http.get('http://localhost:8000/api/user', {withCredentials: true}).subscribe(
+      (res: any) => {
+        console.log(res)
+        this.authuser=res;
+        console.log(res.name)
+        this.auth_id = res.id;
+        Emitters.authEmitter.emit(true);
+      });
+    Emitters.authEmitter.subscribe(
+      (data: any) => {
+        this.auth= data;
+      });
+
   }
+
+
+  loadUser() {
+    this.route.params.subscribe(params => {
+      this.profile_id = params['id'];
+      
+      this.http.get(`http://localhost:8000/api/profuser/${this.profile_id}`).subscribe(
+        (data: any) => {
+        console.log(data)
+        this.user=data[0]
+        this.skills=this.user.skill
+
+
+
+
+
+        console.log(this.skills);
+        });
+    });
+  }
+
+
+
+ 
 
   removeSkill(index: number) {
     this.skills.splice(index, 1);
   }
 
-  saveSkills() {
-    const apiUrl = 'http://localhost:8000/api/skills-form'; // Adjust the URL as per your Laravel backend
-    const formData = {}; // Assuming you have data to send along with the request
+  addSkill() {
+   {
 
-    this.http.post(apiUrl, formData).subscribe(
-      (resultData: any) => {
-        alert(resultData.message + resultData.user.name + ' has been registered');
-        this.router.navigate(['/']); // Navigate to appropriate route after successful skill save
-      },
-      error => {
-        console.error('Error saving skills:', error);
-        // Handle error
-      }
-    );
+      const formData = new FormData();
+  
+    // Add other fields to FormData
+    formData.append('user_id', this.profile_id);
+    formData.append('type', this.skill);
+    // Convert NgbDateStruct to a string in a specific format
 
-    console.log('This runs');
+    
+   
+ 
+  
+      this.http.post("http://localhost:8000/api/skills-form",formData).subscribe((resultData: any)=> 
+      {
+  
+          console.log(resultData)
+  
+      });
+      console.log("This runs")
+      
+    }
+  }
+
+
+  saveSkill(id: string,type: string){
+    {
+    const formData = new FormData();
+  
+    // Add other fields to FormData
+    formData.append('id', id);
+    formData.append('type', type);
+
+    console.log(formData)
+
+    this.http.post("http://localhost:8000/api/skills-edit",formData).subscribe((resultData: any)=> 
+      {
+  
+          console.log(resultData)
+  
+      });
+
+    }
   }
 }

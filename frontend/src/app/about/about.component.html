@@ -35,11 +35,12 @@
                         {{ profession.position }}{{ !last ? ', ' : '' }}
                     </ng-container>
                 <li>
-                <li><strong>Skills:</strong>
-                    <ng-container *ngFor="let skills of skills; let last = last">
-                        {{ skills.type }}{{ !last ? ', ' : '' }}
-                    </ng-container>
-                <li>
+                    <li (click)="user.id === authuser.id ? goToskillform() : null" style="cursor: pointer;"><strong>Skills:</strong>
+                        <ng-container *ngFor="let skills of skills; let last = last" >
+                            {{ skills.type }}{{ !last ? ', ' : '' }}
+                        </ng-container>
+                    </li>
+                    
 
             </ul>
         </div> 

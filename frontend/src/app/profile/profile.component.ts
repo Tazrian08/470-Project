@@ -135,6 +135,14 @@ closepropic(): void {
 
 
 
+goToskillform(id: string){
+
+  this.router.navigate(['/skills-form', this.id]);
+
+}
+
+
+
 
 
 }
