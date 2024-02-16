@@ -46,7 +46,7 @@ export class SkillsFormComponent {
   loadUser() {
     this.route.params.subscribe(params => {
       this.profile_id = params['id'];
-      
+
       this.http.get(`http://localhost:8000/api/profuser/${this.profile_id}`).subscribe(
         (data: any) => {
         console.log(data)
@@ -64,7 +64,7 @@ export class SkillsFormComponent {
 
 
 
- 
+
 
   removeSkill(index: number) {
     this.skills.splice(index, 1);
@@ -74,24 +74,24 @@ export class SkillsFormComponent {
    {
 
       const formData = new FormData();
-  
+
     // Add other fields to FormData
     formData.append('user_id', this.profile_id);
     formData.append('type', this.skill);
     // Convert NgbDateStruct to a string in a specific format
 
-    
-   
- 
-  
-      this.http.post("http://localhost:8000/api/skills-form",formData).subscribe((resultData: any)=> 
+
+
+
+
+      this.http.post("http://localhost:8000/api/skills-form",formData).subscribe((resultData: any)=>
       {
-  
+
           console.log(resultData)
-  
+
       });
       console.log("This runs")
-      
+
     }
   }
 
@@ -99,18 +99,18 @@ export class SkillsFormComponent {
   saveSkill(id: string,type: string){
     {
     const formData = new FormData();
-  
+
     // Add other fields to FormData
     formData.append('id', id);
     formData.append('type', type);
 
     console.log(formData)
 
-    this.http.post("http://localhost:8000/api/skills-edit",formData).subscribe((resultData: any)=> 
+    this.http.post("http://localhost:8000/api/skills-edit",formData).subscribe((resultData: any)=>
       {
-  
+
           console.log(resultData)
-  
+
       });
 
     }

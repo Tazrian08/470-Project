@@ -1,0 +1,42 @@
+<form>
+  <h1 style="text-align: center">Add Profession</h1>
+    <div class="mb-3">
+        <label for="name" class="form-label">Company/Institute</label>
+        <input type="text" [(ngModel)]="company" [ngModelOptions]="{standalone: true}" class="form-control" id="name" placeholder="Enter Company Name">
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Position</label>
+        <input type="text" [(ngModel)]="position" [ngModelOptions]="{standalone: true}" class="form-control" id="name" placeholder="Enter Name">
+    </div>
+
+    <div class="form-group">
+        <label>Start Date</label>
+        <ngb-datepicker
+          [(ngModel)]="start_date"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control"
+          id="name"
+          [minDate]="{year: 1900, month: 1, day: 1}"
+        ></ngb-datepicker>
+      </div>
+
+      <div (click)="toggleflag()" class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Currently Working</label>
+      </div>
+
+      <div *ngIf = "isChecked" class="form-group">
+        <label>End Date</label>
+        <ngb-datepicker
+          [(ngModel)]="end_date"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control"
+          id="name"
+          [minDate]="{year: 1900, month: 1, day: 1}"
+        ></ngb-datepicker>
+      </div>
+
+
+      <button type="submit" class="btn btn-primary mt-3 register-btn" (click)="addprofession()">Add Profession</button>
+    <!-- <p *ngIf="message !== null && message !== undefined">{{message.name}} has been registered</p> -->
+</form>

@@ -18,6 +18,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HobbyaddComponent } from './hobbyadd/hobbyadd.component';
 import { SkillsFormComponent } from './skills-form/skills-form.component';
+import { AddprofessionComponent } from './addprofession/addprofession.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { SkillsFormComponent } from './skills-form/skills-form.component';
     AboutComponent,
     ContactComponent,
     HobbyaddComponent,  
-    SkillsFormComponent,  
+    SkillsFormComponent, AddprofessionComponent,  
   ],
   imports: [
     BrowserModule,
