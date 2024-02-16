@@ -9,9 +9,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HobbyaddComponent {
   type: any; 
-  hobby: any;
   id: any; 
   userID: any;
+
+  authuser: any
+  auth_id=""
+  auth:boolean=false
+  profile_id=""
+  user:any
+  hobbies:any
+  hobby=""
+
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
@@ -29,7 +37,21 @@ export class HobbyaddComponent {
           console.error('Error fetching user profile:', error);
         }
       );
+      this.http.get(`http://localhost:8000/api/gethobby/${this.userID}`).subscribe(
+        (res: any) => {
+          this.hobbies=res
+
+        },
+        (error) => {
+        }
+      );
+
+
     });
+
+
+
+
   }
   
   addHobbies() {
@@ -47,5 +69,28 @@ export class HobbyaddComponent {
       }
     );
   }
+
+
+  saveHobby(id: string,type: string){
+    {
+    const formData = new FormData();
+  
+    // Add other fields to FormData
+    formData.append('id', id);
+    formData.append('type', type);
+
+    console.log(formData)
+
+    this.http.post("http://localhost:8000/api/hobbies-edit",formData).subscribe((resultData: any)=> 
+      {
+  
+          console.log(resultData)
+  
+      });
+
+    }
+  }
+
+
   
 }

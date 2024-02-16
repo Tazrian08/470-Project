@@ -2,7 +2,7 @@
     <div class="container mt-4" >
     
         <div class="card">
-            <h1>Hobby Edit Form</h1>
+            <h1>Add Hobby</h1>
       
       <form>
         <div class="mb-3"> 
@@ -17,4 +17,18 @@
       </form>
         </div>
       <div>
+
+        <div>
+          <div class="reg-container">
+            <div class="registration-container">
+                <form>
+                  <h1 style="text-align: center">Edit Hobbies</h1>
+                    <div *ngFor="let hby of hobbies; let i= index" class="mb-3">
+                        <label for="name" class="form-label">Skill:</label>
+                        <input type="text" [(ngModel)]="hobbies[i].type" [ngModelOptions]="{standalone: true}" class="form-control" id="name">
+                        <button type="submit" class="btn btn-primary mt-3 register-btn" (click)="saveHobby(hobbies[i].id,hobbies[i].type)">Save Changes</button>
+                    </div>
+                    <!-- <p *ngIf="message !== null && message !== undefined">{{message.name}} has been registered</p> -->
+                </form>
+            </div>
       </div>

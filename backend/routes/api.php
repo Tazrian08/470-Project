@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HobbyController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProfilepicController;
@@ -35,6 +36,10 @@ Route::post("/hobbies", [UserController::class, "addHobby"]);
 Route::post("/skills-form", [SkillController::class,"store"]);
 Route::post("/skills-edit", [SkillController::class,"update"]);
 
+
+//HOBBY ROUTES
+Route::get("/gethobby/{id}", [HobbyController::class,"index"]);
+Route::post("/hobbies-edit", [HobbyController::class,"update"]);
 
 //PROFILE PIC ROUTES
 Route::post("/propic/create",[ProfilepicController::class,"create"]);
