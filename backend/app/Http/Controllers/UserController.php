@@ -73,7 +73,7 @@ class UserController extends Controller
     public function addHobby(Request $request)
     {
         $hobby = Hobby::create([
-            'user_id' => Auth::user(),
+            'user_id' =>$request->input('user_id'),
             'type' =>$request->input('type'),
         ]);
 

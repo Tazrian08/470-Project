@@ -35,6 +35,7 @@ export class HobbyaddComponent {
   addHobbies() {
     const formData = new FormData();
     formData.append('type',this.type); 
+    formData.append('user_id',this.userID); 
   
     this.http.post("http://localhost:8000/api/hobbies", formData).subscribe(
       (resultData: any) => {
