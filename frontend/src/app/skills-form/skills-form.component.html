@@ -1,0 +1,11 @@
+<div>
+  <h2>Skills Form</h2>
+  <form #skillsForm="ngForm" (ngSubmit)="saveSkills()">
+    <div *ngFor="let skill of skills; let i = index" class="skill-item">
+      <input type="text" name="skill{{i}}" [(ngModel)]="skills[i]" required>
+      <button type="button" (click)="removeSkill(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addSkill()">Add Skill</button>
+    <button type="submit">Save</button>
+  </form>
+</div>
