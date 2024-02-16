@@ -102,6 +102,12 @@ export class AboutComponent{
     this.router.navigate(['/skills-form', this.user.id]);
   
   }
+
+  goToaddHobby(){
+
+    this.router.navigate(['/hobbies', this.user.id]);
+  
+  }
   
 
   }

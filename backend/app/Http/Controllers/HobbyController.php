@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hobby;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreHobbyRequest;
 use App\Http\Requests\UpdateHobbyRequest;
 
@@ -11,9 +12,10 @@ class HobbyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $hobbies=Hobby::where("user_id",$id)->get();
+        return response()->json($hobbies);
     }
 
     /**
@@ -51,9 +53,18 @@ class HobbyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateHobbyRequest $request, Hobby $hobby)
+    public function update(Request $request)
     {
-        //
+        
+        $hobby=Hobby::find( $request->input('id'));
+        $hobby->update([
+            'type' => $request->input('type'),
+
+        ]);
+
+    
+        return response()->json($hobby); 
+        
     }
 
     /**

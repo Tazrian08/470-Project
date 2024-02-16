@@ -15,7 +15,7 @@
     <div class="container2">
         <div class="mini-container1">
             <p>About</p>
-            <button  *ngIf="profile_id == authuser?.id" type="submit" class="btn btn-primary mt-3 login-btn" [routerLink]="['/hobbies', authuser?.id]">Login</button>
+            <!-- <button  *ngIf="profile_id == authuser?.id" type="submit" class="btn btn-primary mt-3 login-btn" [routerLink]="['/hobbies', authuser?.id]">Login</button> -->
         </div> 
         <div class="mini-container2">
             <ul>
@@ -26,7 +26,7 @@
                 <li><strong>Blood Type:</strong> {{ blood }}</li>
                 <li><strong>Contact:</strong> {{ contact }}</li>
                 <li><strong>Email:</strong> {{ email }}</li>
-                <li><strong>Hobbies:</strong>
+                <li (click)="user.id === authuser.id ? goToaddHobby() : null" style="cursor: pointer;"><strong>Hobbies:</strong>
                     <ng-container *ngFor="let hobby of hobbies; let last = last">
                       {{ hobby.type }}{{ !last ? ', ' : '' }}
                     </ng-container>
