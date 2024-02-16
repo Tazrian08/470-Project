@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProfilepicController;
 
 /*
@@ -37,6 +38,10 @@ Route::post("/skills-edit", [SkillController::class,"update"]);
 
 //PROFILE PIC ROUTES
 Route::post("/propic/create",[ProfilepicController::class,"create"]);
+
+
+//PROFESSION ROUTES
+Route::post("/addprofession",[ProfessionController::class,"create"]);
 
 
 

@@ -11,6 +11,8 @@ class Profession extends Model
 
     protected $fillable = [
         'user_id',
+        'company',
+        'position',
         'start',
         'end', 
     ];

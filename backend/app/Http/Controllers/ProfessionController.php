@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profession;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreProfessionRequest;
 use App\Http\Requests\UpdateProfessionRequest;
 
@@ -19,9 +20,28 @@ class ProfessionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function create(Request $request)
+    {   
+        if (!empty(trim($request->input('end_date')))) {
+            // 'end_date' is not empty or ""
+            $profession = Profession::create([
+                'user_id' => $request->input('user_id'),
+                'company' => $request->input('company'),
+                'position' => $request->input('position'),
+                'start' => $request->input('start_date'),
+            ]);
+        }
+        else{
+            $profession = Profession::create([
+                'user_id' => $request->input('user_id'),
+                'company' => $request->input('company'),
+                'position' => $request->input('position'),
+                'start' => $request->input('start_date'),
+                'end' => $request->input('end_date'),
+            ]);
+
+        }
+        return response()->json($profession);
     }
 
     /**
