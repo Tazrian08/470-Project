@@ -108,6 +108,12 @@ export class AboutComponent{
     this.router.navigate(['/hobbies', this.user.id]);
   
   }
+
+  goToaddprofession(){
+
+    this.router.navigate(['/addprofession', this.user.id]);
+
+  }
   
 
   }

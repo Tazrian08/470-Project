@@ -36,6 +36,10 @@ export class ProfileComponent {
   profilepic:any
   total_follower: any;
 
+  auth_followed: any;
+
+  profile_follower:any
+
 
 
 
@@ -57,6 +61,8 @@ export class ProfileComponent {
         this.authuser=res;
         console.log(res.name)
         this.auth_id = res.id;
+        this.auth_followed = res.follower;
+        console.log(this.auth_followed)
         Emitters.authEmitter.emit(true);
       });
     Emitters.authEmitter.subscribe(
@@ -64,16 +70,6 @@ export class ProfileComponent {
         this.auth= data;
       });
     
-      this.userService.getFollowerCount(this.auth_id)
-      .subscribe(
-        (data: any) => {
-          this.total_follower = data.follower_count;
-          console.log(this.total_follower)
-        },
-        error => {
-          console.error('Error fetching follower count:', error);
-        }
-      );
 
 
   }
@@ -99,7 +95,8 @@ export class ProfileComponent {
         this.profilepic =data[0].profilepic[0];
         console.log(this.profilepic)
         this.posts.push(...data[0].post); 
-        console.log(this.posts);
+        this.profile_follower=data[0].followed
+        // console.log(this.posts);
         });
     });
   }
@@ -124,8 +121,8 @@ onScroll(event: any) {
   console.log('Scroll event detected!');
   const pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
   const max = document.documentElement.scrollHeight;
-  console.log('Current position:', pos);
-  console.log('Maximum position:', max);
+  // console.log('Current position:', pos);
+  // console.log('Maximum position:', max);
   if (pos === max) {
     console.log('Reached bottom of page!');
     // Load more posts when scrolled to the bottom

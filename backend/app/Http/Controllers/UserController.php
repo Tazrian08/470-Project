@@ -59,7 +59,7 @@ class UserController extends Controller
 
     public function user()
     {
-        return response()->json(Auth::user());
+        return response()->json(Auth::user()->load('follower', 'followed'));
     }
 
     public function logout()

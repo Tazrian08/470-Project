@@ -27,7 +27,7 @@
             <p *ngIf="profile_id != authuser?.id && follow">Following</p>
         </div>
         <div class="mini-container3">
-            <p>Followers: 20<br></p>
+            <p>Followers: {{profile_follower?.length}}<br></p>
             <ul class="horizontal-list">
                 <li><a href="https://github.com/wasimaannan">GitHub</a></li>
                 <li><a href="https://facebook.com/wasimaannan">Facebook</a></li>
@@ -42,6 +42,7 @@
         <div class="hover-message">Add Profile Picture</div>
     </div>
     <div *ngIf="profile_id!=authuser?.id" class="container3">
+        <img [src]="profilepic?.path" alt="" class="profile-picture">
         <div class="hover-message">Add Profile Picture</div>
     </div>
 
