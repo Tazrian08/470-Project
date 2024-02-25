@@ -1,5 +1,5 @@
-<div class="photo-container"> 
-    <div class="container1"> 
+<div class="photo-container">
+    <div class="container1">
         <nav class="navbar">
             <ul>
                 <li><a href="#">Explore</a></li>
@@ -31,7 +31,7 @@
                       {{ hobby.type }}{{ !last ? ', ' : '' }}
                     </ng-container>
                 <li>
-                <li><strong>Profession:</strong>
+                <li (click)="user.id === authuser.id ? goToaddprofession() : null" style="cursor: pointer;"><strong>Profession:</strong>
                     <ng-container *ngFor="let profession of profession; let last = last">
                         {{ profession.position }}{{ !last ? ', ' : '' }}
                     </ng-container>
@@ -41,14 +41,14 @@
                             {{ skills.type }}{{ !last ? ', ' : '' }}
                         </ng-container>
                     </li>
-                    
+
 
             </ul>
-        </div> 
-    </div> 
+        </div>
+    </div>
 
-    
-        
-    
+
+
+
 
 

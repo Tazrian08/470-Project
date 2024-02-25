@@ -74,7 +74,7 @@ export class AboutComponent{
         this.contact =data[0].contact
         this.blood =data[0].blood_type;
         this.about =data[0].about;
-        this.posts.push(...data[0].post); 
+        this.posts.push(...data[0].post);
         this.hobbies=data[0].hobby;
         this.profession = data[0].profession;
         this.skills = data[0].skill;
