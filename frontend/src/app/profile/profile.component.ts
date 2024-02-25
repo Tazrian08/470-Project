@@ -1,9 +1,12 @@
 import { Component, HostListener } from '@angular/core';
 import { Emitters } from '../Emitters/emitters';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostformdialogueService } from '../posts/postformdialogue.service';
 import { PropicService } from '../addpropic/propic.service';
+
+import { UserService } from '../profile/user.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -29,14 +32,16 @@ export class ProfileComponent {
   about : any;
   id : any;
   auth_id : any;
-
+  follow:boolean=false
   profilepic:any
+  total_follower: any;
 
 
 
 
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute,private dialogService: PostformdialogueService,private dialogService1: PropicService){}
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute,private dialogService: PostformdialogueService, 
+    private dialogService1: PropicService, private userService: UserService){}
 
 
 
@@ -44,6 +49,7 @@ export class ProfileComponent {
   ngOnInit(): void {
 
     this.loadPosts();
+    
 
     this.http.get('http://localhost:8000/api/user', {withCredentials: true}).subscribe(
       (res: any) => {
@@ -57,8 +63,21 @@ export class ProfileComponent {
       (data: any) => {
         this.auth= data;
       });
+    
+      this.userService.getFollowerCount(this.auth_id)
+      .subscribe(
+        (data: any) => {
+          this.total_follower = data.follower_count;
+          console.log(this.total_follower)
+        },
+        error => {
+          console.error('Error fetching follower count:', error);
+        }
+      );
+
 
   }
+  
   loadPosts() {
     this.route.params.subscribe(params => {
       this.profile_id = params['id'];
@@ -84,7 +103,7 @@ export class ProfileComponent {
         });
     });
   }
-
+  
 
   // Function to detect scroll to the bottom of the page
   // @HostListener('window:scroll', ['$event'])
@@ -140,9 +159,23 @@ goToskillform(id: string){
   this.router.navigate(['/skills-form', this.id]);
 
 }
+followUser(userId: string) {
+  const formData = new FormData();
+    formData.append('followed_id',this.profile_id); 
+    formData.append('follower_id',this.auth_id); 
+  
+    this.http.post("http://localhost:8000/api/follow", formData).subscribe(
+      (resultData: any) => {
+        console.log(resultData); 
+        this.follow= true;
+        alert("followed");
+      },
+      (error: any) => {
+        console.error('Error following:', error);
+      }
+    );
 
-
-
+}
 
 
 }

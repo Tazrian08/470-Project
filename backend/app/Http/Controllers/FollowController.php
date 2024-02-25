@@ -21,8 +21,16 @@ class FollowController extends Controller
      */
     public function create()
     {
-        //
+        $follow=Follow::where("user_id",$id)->get();
+        return response()->json($follow);
     }
+
+    public function getFollowerCount($id)
+{
+    $followerCount = Follow::where('follower_id', $id)->count();
+
+    return response()->json(['follower_count' => $followerCount]);
+}
 
     /**
      * Store a newly created resource in storage.

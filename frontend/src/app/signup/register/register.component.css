@@ -6,27 +6,53 @@
 }
 
 /* Body styles */
-.reg-container {
+body {
   font-family: Arial, sans-serif;
-  background-image: url('/assets/images/register.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
+  margin: 0; /* Remove default body margin */
+}
+
+/* Container for the video background */
+.video-container {
+  position: relative; /* Set position to relative */
+}
+
+/* Video background */
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
 }
 
 /* Container for the registration form */
 .registration-container {
-  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+  position: absolute;
+  top: 50%; /* Position form at the center of the viewport */
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the form horizontally and vertically */
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
   border-radius: 10px;
-  padding: 20px;
-  height: 100vh;
-  width: 60vh;
-  backdrop-filter: blur(10px); /* Fuzzy background effect */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  padding: 30px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  z-index: 1; /* Ensure form is on top of the video background */
+}
+
+/* Headline style */
+.registration-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333333; /* Dark text color */
 }
 
 /* Input fields */
@@ -34,8 +60,14 @@
   width: 100%;
   margin-bottom: 15px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #dddddd; /* Light gray border */
   border-radius: 5px;
+  outline: none; /* Remove outline on focus */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+.input-field:focus {
+  border-color: #007bff; /* Border color on focus */
 }
 
 /* Register button */
@@ -47,16 +79,10 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
 }
 
 /* Register button hover effect */
 .register-btn:hover {
   background-color: #0056b3; /* Darker blue */
-}
-
-/* Optional: Add more specific styles for responsiveness */
-@media (max-width: 768px) {
-  .login-container {
-      width: 80%;
-  }
 }

@@ -8,6 +8,7 @@ import { ContactComponent } from './contact/contact.component';
 import { HobbyaddComponent } from './hobbyadd/hobbyadd.component';
 import { SkillsFormComponent } from './skills-form/skills-form.component';
 import { AddprofessionComponent } from './addprofession/addprofession.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {path: "register", component: RegisterComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: "hobbies/:id", component: HobbyaddComponent},
   {path: 'skills-form/:id', component: SkillsFormComponent},
   {path: 'addprofession/:id', component: AddprofessionComponent},
+  {path: 'home', component: HomeComponent},
 ];
 
 @NgModule({

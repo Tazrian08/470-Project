@@ -8,7 +8,7 @@ use App\Http\Controllers\HobbyController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProfilepicController;
-
+use App\Http\Controllers\FollowController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,6 +31,8 @@ Route::get("/profuser/{id}", [UserController::class,"profuser"]);
 Route::get("/about/{id}", [UserController::class,"profuser"]);
 Route::get("/contact/{id}", [UserController::class,"profuser"]);
 Route::post("/hobbies", [UserController::class, "addHobby"]);
+Route::post('/follow', [UserController::class, 'follow']);
+
 
 //SKILL ROUTES
 Route::post("/skills-form", [SkillController::class,"store"]);
@@ -49,6 +51,8 @@ Route::post("/propic/create",[ProfilepicController::class,"create"]);
 Route::post("/addprofession",[ProfessionController::class,"create"]);
 
 
+//FOLLOW ROUTES
+Route::get('/followers/count/{id}', [FollowController::class, 'getFollowerCount']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
