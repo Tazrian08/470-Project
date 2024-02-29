@@ -78,7 +78,7 @@ class PostController extends Controller
             'description' => $request->input('description'),
         ]);
     }
-        return response()->json($post->load("user"));
+        return response()->json($post->load("image"));
     }
 
     /**
