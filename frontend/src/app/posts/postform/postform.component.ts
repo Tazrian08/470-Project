@@ -27,19 +27,11 @@ export class PostformComponent {
     const formData = new FormData();
     formData.append('description', this.description);
 
-    if (!this.selectedFiles || this.selectedFiles.length === 0) {
-      
-      
-      
-    } else {
-
-      const formData = new FormData();
+    if (this.selectedFilesArray.length > 0) {
       for (let i = 0; i < this.selectedFilesArray.length; i++) {
-        formData.append('files', this.selectedFilesArray[i]!);
+          formData.append('files', this.selectedFilesArray[i]);
       }
-
-    }
-
+  }
     // Send the formData to the backend
     this.http.post("http://localhost:8000/api/post/create", formData).subscribe(
       (response) => {

@@ -43,7 +43,7 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
-        return response()->json($request->files);
+        return response()->json($request);
     }
 
     /**
