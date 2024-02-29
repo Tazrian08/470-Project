@@ -30,4 +30,9 @@ class Post extends Model
         return $this->hasMany(Like::class);
         
     }
+
+    public function image(){
+        return $this->hasMany(Image::class);
+        
+    }
 }

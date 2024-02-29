@@ -23,6 +23,12 @@ return new class extends Migration
             $table->string('type');
             $table->longText('description');
             $table->boolean('public')->default(0);
+            $table->unsignedBigInteger('shared_post_id')->nullable()->default(NULL);
+            $table->foreign('shared_post_id')
+                ->references('id') 
+                ->on('posts')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('posts'); 
     }
 };

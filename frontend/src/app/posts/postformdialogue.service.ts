@@ -15,9 +15,9 @@ export class PostformdialogueService {
   openDialog(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '80%';
-    dialogConfig.height = '80%';
+    dialogConfig.height = '100%';
     dialogConfig.maxWidth = '90%';
-    dialogConfig.maxHeight = '90%';
+    dialogConfig.maxHeight = '100%';
     dialogConfig.position = {
       top: '0%',
       left: '20%',
