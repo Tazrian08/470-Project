@@ -21,7 +21,7 @@ export class ProfileComponent {
   profile_id : any;
   posts: any[] = [];
   currentPage = 1;
-  pageSize = 10;
+  pageSize = 5;
   name : any;
   email : any;
   username : any;
@@ -52,17 +52,14 @@ export class ProfileComponent {
 
   ngOnInit(): void {
 
-    this.loadPosts();
+    this.profileload();
     
 
     this.http.get('http://localhost:8000/api/user', {withCredentials: true}).subscribe(
       (res: any) => {
-        console.log(res)
         this.authuser=res;
-        console.log(res.name)
         this.auth_id = res.id;
         this.auth_followed = res.follower;
-        console.log(this.auth_followed)
         Emitters.authEmitter.emit(true);
       });
     Emitters.authEmitter.subscribe(
@@ -74,28 +71,27 @@ export class ProfileComponent {
 
   }
   
-  loadPosts() {
+  profileload() {
     this.route.params.subscribe(params => {
       this.profile_id = params['id'];
       
       this.http.get(`http://localhost:8000/api/profuser/${this.profile_id}?page=${this.currentPage}&pageSize=${this.pageSize}`).subscribe(
         (data: any) => {
-        console.log(data)
-        this.user=data[0]
-        this.id=data[0].id;
-        this.name= data[0].name;
-        this.email =data[0].email;
-        this.username =data[0].username;
-        this.dob =data[0].dob;
-        this.gender =data[0].gender;
-        this.contact =data[0].contact
-        this.blood =data[0].blood_type;
-        console.log(data[0].blood_type)
-        this.about =data[0].about;
-        this.profilepic =data[0].profilepic[0];
-        console.log(this.profilepic)
-        this.posts.push(...data[0].post); 
-        this.profile_follower=data[0].followed
+        this.user=data.user[0]
+        this.id=data.user[0].id;
+        this.name= data.user[0].name;
+        this.email =data.user[0].email;
+        this.username =data.user[0].username;
+        this.dob =data.user[0].dob;
+        this.gender =data.user[0].gender;
+        this.contact =data.user[0].contact
+        this.blood =data.user[0].blood_type;
+        this.about =data.user[0].about;
+        this.profilepic =data.user[0].profilepic[0];
+        this.posts=data.posts
+        // this.posts.push(...data[0].post); 
+        console.log(this.posts)
+        this.profile_follower=data.user[0].followed
         // console.log(this.posts);
         });
     });
@@ -173,6 +169,8 @@ followUser(userId: string) {
     );
 
 }
+
+loadPosts(){}
 
 
 }

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Hobby;
 use App\Models\Follow;
+use App\Models\Post;
 
 class UserController extends Controller
 {
@@ -50,12 +51,22 @@ class UserController extends Controller
 
     public function profuser($id)
     {
-        $user=User::where("id", $id)
-        ->with("post","post.comment","post.like","post.comment.like","profession","hobby","skill","follower","followed","profilepic")
-        ->get();
-
-        return response()->json($user);
+        $user = User::where("id", $id)
+                    ->with("post","post.comment","post.like","post.comment.like","profession","hobby","skill","follower","followed","profilepic")
+                    ->get();
+    
+        $posts = Post::where("user_id", $id)
+                     ->with("comment","like","comment.like")
+                     ->orderBy('created_at', 'desc')
+                     ->take(5)
+                     ->get();
+    
+        return response()->json([
+            'user' => $user,
+            'posts' => $posts
+        ]);
     }
+    
 
     public function user()
     {
