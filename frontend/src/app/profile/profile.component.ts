@@ -122,7 +122,7 @@ onScroll(event: any) {
   if (pos === max) {
     console.log('Reached bottom of page!');
     // Load more posts when scrolled to the bottom
-    this.currentPage++;
+    // this.currentPage++;
     this.loadPosts();
   }
 }
@@ -170,7 +170,17 @@ followUser(userId: string) {
 
 }
 
-loadPosts(){}
+loadPosts() {
+
+
+
+  this.http.get(`http://localhost:8000/api/loadposts?id=${this.profile_id}&skip=${this.posts.length}`).subscribe(
+    (data: any) => {
+this.posts.push(...data);
+console.log(this.posts)
+
+})
+}
 
 
 }

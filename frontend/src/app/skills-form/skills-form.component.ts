@@ -50,7 +50,7 @@ export class SkillsFormComponent {
       this.http.get(`http://localhost:8000/api/profuser/${this.profile_id}`).subscribe(
         (data: any) => {
         console.log(data)
-        this.user=data[0]
+        this.user=data.user[0]
         this.skills=this.user.skill
 
 

@@ -64,20 +64,19 @@ export class AboutComponent{
       this.http.get(`http://localhost:8000/api/about/${this.profile_id}?page=${this.currentPage}&pageSize=${this.pageSize}`).subscribe(
         (data: any) => {
         console.log(data)
-        this.user=data[0]
-        this.id=data[0].id;
-        this.name= data[0].name;
-        this.email =data[0].email;
-        this.username =data[0].username;
-        this.dob =data[0].dob;
-        this.gender =data[0].gender;
-        this.contact =data[0].contact
-        this.blood =data[0].blood_type;
-        this.about =data[0].about;
-        this.posts.push(...data[0].post);
-        this.hobbies=data[0].hobby;
-        this.profession = data[0].profession;
-        this.skills = data[0].skill;
+        this.user=data.user[0]
+        this.id=data.user[0].id;
+        this.name= data.user[0].name;
+        this.email =data.user[0].email;
+        this.username =data.user[0].username;
+        this.dob =data.user[0].dob;
+        this.gender =data.user[0].gender;
+        this.contact =data.user[0].contact
+        this.blood =data.user[0].blood_type;
+        this.about =data.user[0].about;
+        this.hobbies=data.user[0].hobby;
+        this.profession = data.user[0].profession;
+        this.skills = data.user[0].skill;
         console.log(this.skills[0]);
         console.log(this.profession[0]);
         console.log(this.hobbies[0]);

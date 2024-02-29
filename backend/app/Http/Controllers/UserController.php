@@ -49,23 +49,25 @@ class UserController extends Controller
         ])->withCookie($cookie);
     }
 
-    public function profuser($id)
-    {
-        $user = User::where("id", $id)
-                    ->with("post","post.comment","post.like","post.comment.like","profession","hobby","skill","follower","followed","profilepic")
-                    ->get();
-    
-        $posts = Post::where("user_id", $id)
-                     ->with("comment","like","comment.like")
-                     ->orderBy('created_at', 'desc')
-                     ->take(5)
-                     ->get();
-    
-        return response()->json([
-            'user' => $user,
-            'posts' => $posts
-        ]);
-    }
+    public function profuser($id, Request $request)
+{
+
+
+    $user = User::where("id", $id)
+                ->with("post","post.comment","post.like","post.comment.like","profession","hobby","skill","follower","followed","profilepic")
+                ->get();
+
+    $posts = Post::where("user_id", $id)
+                 ->with("comment","like","comment.like")
+                 ->orderBy('created_at', 'desc')
+                 ->take(5)
+                 ->get();
+
+    return response()->json([
+        'user' => $user,
+        'posts' => $posts
+    ]);
+}
     
 
     public function user()

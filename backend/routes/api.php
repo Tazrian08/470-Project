@@ -34,6 +34,11 @@ Route::post("/hobbies", [UserController::class, "addHobby"]);
 Route::post('/follow', [UserController::class, 'follow']);
 
 
+
+//POST ROUTES
+Route::get("/loadposts", [PostController::class,"loadposts"]);
+
+
 //SKILL ROUTES
 Route::post("/skills-form", [SkillController::class,"store"]);
 Route::post("/skills-edit", [SkillController::class,"update"]);
