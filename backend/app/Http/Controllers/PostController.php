@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -42,8 +44,41 @@ class PostController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
-    {
-        return response()->json($request);
+    {   
+        $data=$request->files;
+        $length=$data->count();
+        $user=User::find($request->input('user_id'));
+        $type="Text";
+        if ($request->files) {
+            $type="Image/Video";
+            $post = Post::create([
+                'user_id' => $request->input('user_id'),
+                'type'=>$type,
+                'description' => $request->input('description'),
+            ]);
+            for ($i=0; $i  < $length; $i++) {
+                $file=$request->file("files_" . $i);
+                // Generate a unique filename for each file
+                $filename = time() . '-' . $user->id . '.' . $i . $file->extension();
+                
+                // Move the file to the desired directory
+                $file->move(public_path('images'), $filename);
+                
+                // Create the database entry for the file
+                $path = asset('images/' . $filename);
+                $image = Image::create([
+                    'post_id' => $post->id, // Ensure $user_id is defined
+                    'path' => $path,
+                ]);
+            }
+    } else {
+        $post = Post::create([
+            'user_id' => $request->input('user_id'),
+            'type'=>$type,
+            'description' => $request->input('description'),
+        ]);
+    }
+        return response()->json($post->load("user"));
     }
 
     /**

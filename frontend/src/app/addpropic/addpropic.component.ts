@@ -36,6 +36,7 @@ export class AddpropicComponent {
   }
 
   upload(): void {
+
     const formData = new FormData();
     formData.append('id', this.data.id);
 

@@ -22,7 +22,8 @@ class ProfilepicController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
-{
+{   
+
     $user_id = $request->input('id');
     $existingProfilePic = Profilepic::where('user_id', $user_id)
                                     ->where('active', 0)
