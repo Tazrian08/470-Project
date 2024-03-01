@@ -91,6 +91,7 @@ export class ProfileComponent {
         this.posts=data.posts
         // this.posts.push(...data[0].post); 
         console.log(this.posts)
+       
         this.profile_follower=data.user[0].followed
         // console.log(this.posts);
         });
@@ -178,6 +179,7 @@ loadPosts() {
     (data: any) => {
 this.posts.push(...data);
 console.log(this.posts)
+
 
 })
 }

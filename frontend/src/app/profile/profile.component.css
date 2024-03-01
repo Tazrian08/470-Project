@@ -146,7 +146,7 @@
     align-items: center;
     position: relative;
     transform: translateX(0%);
-    top: 10vh;
+    top: 0vh;
     margin: 0;
     flex-direction: column;
 }
@@ -172,7 +172,7 @@
 }
 .container3{
     position: absolute;
-    top: 60%;
+    top: 0%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 30vh;
@@ -225,7 +225,7 @@
     align-items: center;
     position: absolute;
     transform: translateX(0%);
-    top: 45vh;
+    top: 53vh;
 }
 .follow-button {
     background-color: white;
@@ -240,3 +240,99 @@
     background-color: #0056b3; 
   }
   
+  .mini-container5 {
+    position: absolute;
+    top: 70vh;
+    width: 100%;
+    background-color: black;
+    padding: 20px;
+    max-height: calc(100vh - 200px); 
+    color: #ffffff;
+    overflow-y: auto; 
+    overflow-x: hidden; 
+}
+
+.content-wrapper {
+    max-height: 100%;
+    overflow-y: auto;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.content-wrapper::-webkit-scrollbar {
+    width: 0; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+
+  
+.post-list {
+    top: 90vh;
+    list-style-type: none;
+    padding: 0;
+    margin-right: 11px;
+    margin-left: 11px;
+  }
+  
+  .post {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  
+  
+  .post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .author-info {
+    font-weight: bold;
+  }
+  
+  .post-time {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .post-content {
+    margin-bottom: 10px;
+  }
+  .something-button {
+    margin-top: 10px; 
+    background-color: #fff; 
+    color: #000; 
+    padding: 8px 16px; 
+    border: 1px solid #ffffff; 
+    border-radius: 5px; 
+    cursor: pointer;
+}
+
+.something-button:hover {
+    background-color: #000; 
+    color: #fff; 
+}
+.post-button {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.post-button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.post-button:active {
+    background-color: #fff;
+    color: #000;
+}
