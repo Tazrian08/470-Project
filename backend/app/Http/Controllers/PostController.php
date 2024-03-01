@@ -8,6 +8,8 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -60,11 +62,38 @@ class PostController extends Controller
 
 
     
-    public function index()
-    {
-        //
+
+     
+public function share(Request $request)
+{
+    // Validate the incoming request data
+    $validator = Validator::make($request->all(), [
+        'pid' => 'required|exists:posts,id',
+        'uid' => 'required|exists:users,id',
+        'description' => 'required|string',
+    ]);
+
+    // Check if the validation fails
+    if ($validator->fails()) {
+        return response()->json(['errors' => $validator->errors()], 422);
     }
 
+    // Create the shared post
+    $sharedPost = Post::create([
+        'user_id' => $request->uid,
+        'type' => 'shared',
+        'shared_post_id' => $request->pid,
+        'description' => $request->description,
+    ]);
+
+    // Return a JSON response indicating success
+    return response()->json(['message' => 'Post shared successfully', 'post' => $sharedPost]);
+}
+
+     
+
+     
+     
     /**
      * Show the form for creating a new resource.
      */
