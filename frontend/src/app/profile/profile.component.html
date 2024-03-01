@@ -7,6 +7,7 @@
                 <li *ngIf="profile_id != authuser?.id"><a [routerLink]="['/about', profile_id]">About</a></li>
                 <li *ngIf="profile_id == authuser?.id"><a [routerLink]="['/contact', authuser?.id]">Contact </a></li>
                 <li *ngIf="profile_id != authuser?.id"><a [routerLink]="['/contact', profile_id]">Contact </a></li>
+                <li *ngIf="profile_id == authuser?.id"><a [routerLink]="['/feed', authuser?.id]">NewsFeed </a></li>
                 <li><a href="#">GitHub</a></li>
                 <li><a href="#">Collaborations</a></li>
                 <!-- <button (click)="openDialog()" class="logout-button">Button</button> -->

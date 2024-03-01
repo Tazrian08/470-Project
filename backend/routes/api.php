@@ -40,6 +40,10 @@ Route::get("/loadposts", [PostController::class,"loadposts"]);
 Route::post("/post/create",[PostController::class,"create"]);
 
 
+//FEED ROUTES
+Route::get("/loadfeed", [PostController::class,"loadfeed"]);
+
+
 //SKILL ROUTES
 Route::post("/skills-form", [SkillController::class,"store"]);
 Route::post("/skills-edit", [SkillController::class,"update"]);
@@ -63,6 +67,7 @@ Route::get('/followers/count/{id}', [FollowController::class, 'getFollowerCount'
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [UserController::class, 'user']);
+    Route::get('/userfeed', [UserController::class, 'feed']);
     Route::post('/logout', [UserController::class, 'logout']);
 
 

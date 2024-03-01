@@ -75,6 +75,22 @@ class UserController extends Controller
         return response()->json(Auth::user()->load('follower', 'followed'));
     }
 
+    public function feed()
+    {
+        $user = Auth::user();
+        $posts = Post::whereIn('user_id', function($query) use ($user) {
+                        $query->select('followed_id')
+                              ->from('follows')
+                              ->where('follower_id', $user->id);
+                    })
+                    ->with('user', 'comment', 'like',"comment.like")
+                    ->orderBy('created_at', 'desc')
+                    ->take(5)
+                    ->get();
+    
+        return response()->json([$user, $posts]);
+    }
+
     public function logout()
     {
         $cookie = Cookie::forget('jwt');

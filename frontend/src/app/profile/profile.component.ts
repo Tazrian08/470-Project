@@ -156,6 +156,9 @@ goToskillform(id: string){
   this.router.navigate(['/skills-form', this.id]);
 
 }
+
+
+
 followUser(userId: string) {
   const formData = new FormData();
     formData.append('followed_id',this.profile_id); 

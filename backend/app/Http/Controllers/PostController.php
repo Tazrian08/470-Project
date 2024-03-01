@@ -34,6 +34,31 @@ class PostController extends Controller
          // Now you can use $id and $skip to fetch posts from the database
      }
 
+     public function loadfeed(Request $request)
+     {
+         $id = $request->query('id');
+         $skip = $request->query('skip');
+
+
+         $posts = Post::whereIn('user_id', function($query) use ($id) {
+                         $query->select('followed_id')
+                               ->from('follows')
+                               ->where('follower_id', $id);
+                     })
+                     ->with('user', 'comment', 'like',"comment.like")
+                     ->orderBy('created_at', 'desc')
+                     ->skip($skip)
+                     ->take(5)
+                     ->get();
+
+
+        return response()->json($posts);
+
+         
+         // Now you can use $id and $skip to fetch posts from the database
+     }
+
+
     
     public function index()
     {
