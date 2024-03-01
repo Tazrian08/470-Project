@@ -64,7 +64,7 @@
                         <span class="post-time">{{ post.created_at | date: 'shortDate' }}</span>
                     </div>
                 </div>
-               <div class="post-content">
+               <div *ngIf="post.type!='shared'" class="post-content">
                 <p>{{ post.description }}</p>
                 <div *ngIf="post.image && post.image.length > 0">
                   <div *ngFor="let img of post.image">
@@ -75,13 +75,34 @@
                   </div>
                 </div>
               </div>
+              <div *ngIf="post.type=='shared'" class="post-content">
+                <p>Reposted from {{post.original.user?.name}} </p>
+                <p>{{ post.description }}</p>
+                <p>{{ post.original.description }}</p>
+                <div *ngIf="post.original.image && post.original.image.length > 0">
+                  <div *ngFor="let img of post.original.image">
+                    <img *ngIf="img.type!='video'" [src]="img?.path" alt="Post Image">
+                    <video controls *ngIf="img.type=='video'">
+                        <source [src]="img?.path">
+                      </video>
+                  </div>
+                </div>
+              </div>
               <div class="post-actions">
                 <button  class="post-button">Like</button>
-                <button  class="post-button">Comment</button>
-                <button  class="post-button">Share</button>
+                <button class="post-button">Comment</button>
+                <button class="post-button" *ngIf="flag && profile_id != authuser?.id" (click)="flagchanger()">Share</button>
+                <input class="post-button" *ngIf="!flag && profile_id != authuser?.id" type="email" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" class="form-control input-field" id="email" placeholder="Enter Description" required>
+                <button *ngIf="!flag && profile_id != authuser?.id" (click)="sharePost(post.id, description)" class="post-button">Share</button>
+                <button class="post-button" *ngIf="!flag && profile_id != authuser?.id" (click)="flagchanger()">Cancel</button>
             </div>
             </li>
           </ul>
         </div>
       </div>
     </div>
+
+
+
+
+  

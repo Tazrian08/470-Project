@@ -8,6 +8,8 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -21,7 +23,7 @@ class PostController extends Controller
          $skip = $request->query('skip');
 
          $posts = Post::where("user_id", $id)
-                 ->with("comment","like","comment.like")
+                 ->with("comment","like","comment.like","original","original.image","user","original.user")
                  ->orderBy('created_at', 'desc')
                  ->skip($skip)
                  ->take(5)
@@ -45,7 +47,7 @@ class PostController extends Controller
                                ->from('follows')
                                ->where('follower_id', $id);
                      })
-                     ->with('user', 'comment', 'like',"comment.like","image")
+                     ->with('user', 'comment', 'like',"comment.like","original","original.image","image","original.user")
                      ->orderBy('created_at', 'desc')
                      ->skip($skip)
                      ->take(5)
@@ -59,12 +61,39 @@ class PostController extends Controller
      }
 
 
+    
 
-    public function index()
-    {
-        //
+     
+public function share(Request $request)
+{
+    if (!empty(trim($request->input('description')))){
+        $desc=$request->input('description');
+
+    } else {
+
+        $desc="";
     }
 
+    // Create the shared post
+    $sharedPost = Post::create([
+        'user_id' => $request->input('uid'),
+        'type' => 'shared',
+        'shared_post_id' => $request->input('pid'),
+        'description' => $desc,
+    ]);
+
+    $post=Post::where("id",$sharedPost->id)
+    ->with('original',"original.image","user")
+    ->get();
+
+    // Return a JSON response indicating success
+    return response()->json(['message' => 'Post shared successfully', 'post' => $post]);
+}
+
+     
+
+     
+     
     /**
      * Show the form for creating a new resource.
      */
@@ -123,7 +152,7 @@ class PostController extends Controller
     public function show($id)
     {
         $posts=Post::where("user_id", $id)
-        ->with("comment","like","comment.like")
+        ->with("comment","like","comment.like","original","original.image","user","original.user")
         ->get();
 
         return response()->json($posts);
