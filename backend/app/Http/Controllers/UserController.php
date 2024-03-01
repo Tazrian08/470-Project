@@ -58,7 +58,7 @@ class UserController extends Controller
                 ->get();
 
     $posts = Post::where("user_id", $id)
-                 ->with("comment","like","comment.like")
+                 ->with("comment","like","comment.like","image")
                  ->orderBy('created_at', 'desc')
                  ->take(5)
                  ->get();
