@@ -116,8 +116,8 @@ export class ProfileComponent {
   @HostListener('window:scroll', ['$event'])
 onScroll(event: any) {
   console.log('Scroll event detected!');
-  const pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
-  const max = document.documentElement.scrollHeight;
+  let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+  let max = document.documentElement.scrollHeight;
   // console.log('Current position:', pos);
   // console.log('Maximum position:', max);
   if (pos === max) {

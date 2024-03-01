@@ -67,7 +67,10 @@
                 <p>{{ post.description }}</p>
                 <div *ngIf="post.image && post.image.length > 0">
                   <div *ngFor="let img of post.image">
-                    <img [src]="img?.path" alt="Post Image">
+                    <img *ngIf="img.type!='video'" [src]="img?.path" alt="Post Image">
+                    <video controls *ngIf="img.type=='video'">
+                        <source [src]="img?.path">
+                      </video>
                   </div>
                 </div>
               </div>
