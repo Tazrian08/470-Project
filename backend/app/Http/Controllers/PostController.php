@@ -32,7 +32,7 @@ class PostController extends Controller
 
         return response()->json($posts);
 
-         
+
          // Now you can use $id and $skip to fetch posts from the database
      }
 
@@ -56,7 +56,7 @@ class PostController extends Controller
 
         return response()->json($posts);
 
-         
+
          // Now you can use $id and $skip to fetch posts from the database
      }
 
@@ -98,7 +98,7 @@ public function share(Request $request)
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
-    {   
+    {
         $data=$request->files;
         $length=$data->count();
         $user=User::find($request->input('user_id'));
@@ -117,10 +117,10 @@ public function share(Request $request)
                 if ($extension)
                 // Generate a unique filename for each file
                 $filename = time() . '-' . $user->id . '.' . $i . $file->extension();
-                
+
                 // Move the file to the desired directory
                 $file->move(public_path('images'), $filename);
-                
+
                 // Create the database entry for the file
                 $path = asset('images/' . $filename);
                 $image = Image::create([

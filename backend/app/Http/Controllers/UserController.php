@@ -68,7 +68,7 @@ class UserController extends Controller
         'posts' => $posts
     ]);
 }
-    
+
 
     public function user()
     {
@@ -87,7 +87,7 @@ class UserController extends Controller
                     ->orderBy('created_at', 'desc')
                     ->take(5)
                     ->get();
-    
+
         return response()->json([$user, $posts]);
     }
 

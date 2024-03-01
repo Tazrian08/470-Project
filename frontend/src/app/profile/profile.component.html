@@ -35,13 +35,13 @@
                 <li><a href="https://facebook.com/wasimaannan">Facebook</a></li>
                 <li><a href="https://instagram.com/wasimaannan">Instagram</a></li>
                 <li><a href="https://linkedin.com/wasimaannan">LinkedIn</a></li>
-              
-            </ul><br>
-    
-        </div>
-        
 
-    
+            </ul><br>
+
+        </div>
+
+
+
     <div *ngIf="profile_id==authuser?.id"  (click)="openpropic()" class="container3">
         <img [src]="profilepic?.path" alt="" class="profile-picture">
         <div class="hover-message">Add Profile Picture</div>
@@ -50,7 +50,7 @@
         <img [src]="profilepic?.path" alt="" class="profile-picture">
         <div class="hover-message">Add Profile Picture</div>
     </div>
-   
+
     <div class="mini-container5">
         <div class="content-wrapper">
           <ul class="post-list">
@@ -59,7 +59,7 @@
                     <div class="author-info">
                         <span class="author-name">{{ name }}</span><br>
                         <span>  at  </span>
-                        <span class="post-time">{{ post.created_at | date: 'shortTime' }}</span> 
+                        <span class="post-time">{{ post.created_at | date: 'shortTime' }}</span>
                         <span>  on  </span>
                         <span class="post-time">{{ post.created_at | date: 'shortDate' }}</span>
                     </div>
