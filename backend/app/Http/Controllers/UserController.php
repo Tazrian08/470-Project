@@ -58,7 +58,7 @@ class UserController extends Controller
                 ->get();
 
     $posts = Post::where("user_id", $id)
-                 ->with("comment","like","comment.like","image")
+                 ->with("comment","like","comment.like","image","original")
                  ->orderBy('created_at', 'desc')
                  ->take(5)
                  ->get();
@@ -83,7 +83,7 @@ class UserController extends Controller
                               ->from('follows')
                               ->where('follower_id', $user->id);
                     })
-                    ->with('user', 'comment', 'like',"comment.like")
+                    ->with('user', 'comment', 'like',"comment.like","original")
                     ->orderBy('created_at', 'desc')
                     ->take(5)
                     ->get();

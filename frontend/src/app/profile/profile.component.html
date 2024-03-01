@@ -78,12 +78,10 @@
               <div class="post-actions">
                 <button  class="post-button">Like</button>
                 <button class="post-button">Comment</button>
-                <div *ngIf="profile_id != authuser?.id">
-                <button class="post-button" *ngIf="flag" (click)="flagchanger()">Share</button>
-                <input class="post-button" *ngIf="!flag" type="email" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" class="form-control input-field" id="email" placeholder="Enter Description" required>
-                <button *ngIf="!flag" (click)="sharePost(post.id, description)" class="post-button">Share</button>
-                <button class="post-button" *ngIf="!flag" (click)="flagchanger()">Cancel</button>
-            </div>
+                <button class="post-button" *ngIf="flag && profile_id != authuser?.id" (click)="flagchanger()">Share</button>
+                <input class="post-button" *ngIf="!flag && profile_id != authuser?.id" type="email" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" class="form-control input-field" id="email" placeholder="Enter Description" required>
+                <button *ngIf="!flag && profile_id != authuser?.id" (click)="sharePost(post.id, description)" class="post-button">Share</button>
+                <button class="post-button" *ngIf="!flag && profile_id != authuser?.id" (click)="flagchanger()">Cancel</button>
             </div>
             </li>
           </ul>
