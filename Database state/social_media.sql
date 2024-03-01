@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2024 at 11:22 AM
+-- Generation Time: Mar 01, 2024 at 04:23 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -137,6 +137,7 @@ CREATE TABLE `images` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `post_id` bigint(20) UNSIGNED NOT NULL,
   `path` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -145,13 +146,14 @@ CREATE TABLE `images` (
 -- Dumping data for table `images`
 --
 
-INSERT INTO `images` (`id`, `post_id`, `path`, `created_at`, `updated_at`) VALUES
-(3, 129, 'http://localhost:8000/images/1709220665-3.0png', '2024-02-29 09:31:05', '2024-02-29 09:31:05'),
-(4, 129, 'http://localhost:8000/images/1709220665-3.1png', '2024-02-29 09:31:05', '2024-02-29 09:31:05'),
-(5, 130, 'http://localhost:8000/images/1709221430-3.0mp4', '2024-02-29 09:43:50', '2024-02-29 09:43:50'),
-(6, 131, 'http://localhost:8000/images/1709286740-2.0jpg', '2024-03-01 03:52:20', '2024-03-01 03:52:20'),
-(7, 131, 'http://localhost:8000/images/1709286740-2.1jpg', '2024-03-01 03:52:20', '2024-03-01 03:52:20'),
-(8, 131, 'http://localhost:8000/images/1709286740-2.2mp4', '2024-03-01 03:52:20', '2024-03-01 03:52:20');
+INSERT INTO `images` (`id`, `post_id`, `path`, `type`, `created_at`, `updated_at`) VALUES
+(3, 129, 'http://localhost:8000/images/1709220665-3.0png', '', '2024-02-29 09:31:05', '2024-02-29 09:31:05'),
+(4, 129, 'http://localhost:8000/images/1709220665-3.1png', '', '2024-02-29 09:31:05', '2024-02-29 09:31:05'),
+(5, 130, 'http://localhost:8000/images/1709221430-3.0mp4', '', '2024-02-29 09:43:50', '2024-02-29 09:43:50'),
+(6, 131, 'http://localhost:8000/images/1709286740-2.0jpg', '', '2024-03-01 03:52:20', '2024-03-01 03:52:20'),
+(7, 131, 'http://localhost:8000/images/1709286740-2.1jpg', '', '2024-03-01 03:52:20', '2024-03-01 03:52:20'),
+(8, 131, 'http://localhost:8000/images/1709286740-2.2mp4', '', '2024-03-01 03:52:20', '2024-03-01 03:52:20'),
+(9, 132, 'http://localhost:8000/images/1709305444-2.0mp4', '', '2024-03-01 09:04:04', '2024-03-01 09:04:04');
 
 -- --------------------------------------------------------
 
@@ -312,7 +314,7 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (39, 'App\\Models\\User', 2, 'token', 'eced7448ea851acbbf6670173f08656bdcf243752259f6a0cc3b98e1ba2242de', '[\"*\"]', '2024-02-29 08:11:15', NULL, '2024-02-28 23:22:51', '2024-02-29 08:11:15'),
 (40, 'App\\Models\\User', 3, 'token', 'ebb464e1a6ac787ad07dd415c70bd11f036076c21ead1f4b5a9666bad048bc8b', '[\"*\"]', '2024-02-29 09:43:36', NULL, '2024-02-29 08:11:26', '2024-02-29 09:43:36'),
 (41, 'App\\Models\\User', 2, 'token', '3ece6de411ee49648b3d508679da74145c7d1fd348f8b3f56b67021a7d3d5d9a', '[\"*\"]', '2024-03-01 03:50:47', NULL, '2024-03-01 03:50:46', '2024-03-01 03:50:47'),
-(42, 'App\\Models\\User', 2, 'token', '69d1fed6398702799b09cc3b85dffe98a6064fbe77226a3107637979ca3f9bff', '[\"*\"]', '2024-03-01 04:15:13', NULL, '2024-03-01 03:50:47', '2024-03-01 04:15:13');
+(42, 'App\\Models\\User', 2, 'token', '69d1fed6398702799b09cc3b85dffe98a6064fbe77226a3107637979ca3f9bff', '[\"*\"]', '2024-03-01 09:04:10', NULL, '2024-03-01 03:50:47', '2024-03-01 09:04:10');
 
 -- --------------------------------------------------------
 
@@ -353,7 +355,8 @@ INSERT INTO `posts` (`id`, `user_id`, `path`, `type`, `description`, `public`, `
 (128, 3, NULL, 'Image/Video', 'Alibaba', 0, NULL, '2024-02-29 09:28:39', '2024-02-29 09:28:39'),
 (129, 3, NULL, 'Image/Video', 'Alibaba 2', 0, NULL, '2024-02-29 09:31:05', '2024-02-29 09:31:05'),
 (130, 3, NULL, 'Image/Video', 'Alibaba 2', 0, NULL, '2024-02-29 09:43:50', '2024-02-29 09:43:50'),
-(131, 2, NULL, 'Image/Video', 'Description', 0, NULL, '2024-03-01 03:52:20', '2024-03-01 03:52:20');
+(131, 2, NULL, 'Image/Video', 'Description', 0, NULL, '2024-03-01 03:52:20', '2024-03-01 03:52:20'),
+(132, 2, NULL, 'Image/Video', 'Video', 0, NULL, '2024-03-01 09:04:04', '2024-03-01 09:04:04');
 
 -- --------------------------------------------------------
 
@@ -641,7 +644,7 @@ ALTER TABLE `hobbies`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `likes`
@@ -677,7 +680,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT for table `professions`

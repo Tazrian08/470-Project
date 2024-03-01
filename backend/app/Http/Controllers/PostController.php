@@ -58,6 +58,9 @@ class PostController extends Controller
             ]);
             for ($i=0; $i  < $length; $i++) {
                 $file=$request->file("files_" . $i);
+                $extension = $file->getClientOriginalExtension();
+
+                if ($extension)
                 // Generate a unique filename for each file
                 $filename = time() . '-' . $user->id . '.' . $i . $file->extension();
                 
