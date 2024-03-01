@@ -43,7 +43,7 @@
           <li *ngFor="let post of posts" class="post">
               <div class="post-header">
                   <div class="author-info">
-                      <span class="author-name">{{ authuser.name }}</span><br>
+                      <span class="author-name">{{ post.user.name }}</span><br>
                       <span>  at  </span>
                       <span class="post-time">{{ post.created_at | date: 'shortTime' }}</span>
                       <span>  on  </span>

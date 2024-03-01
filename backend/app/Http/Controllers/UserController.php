@@ -68,7 +68,7 @@ class UserController extends Controller
         'posts' => $posts
     ]);
 }
-    
+
 
     public function user()
     {
@@ -83,11 +83,11 @@ class UserController extends Controller
                               ->from('follows')
                               ->where('follower_id', $user->id);
                     })
-                    ->with('user', 'comment', 'like',"comment.like")
+                    ->with('user', 'comment', 'like',"comment.like","image")
                     ->orderBy('created_at', 'desc')
                     ->take(5)
                     ->get();
-    
+
         return response()->json([$user, $posts]);
     }
 
