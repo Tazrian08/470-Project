@@ -64,10 +64,23 @@
                         <span class="post-time">{{ post.created_at | date: 'shortDate' }}</span>
                     </div>
                 </div>
-               <div class="post-content">
+               <div *ngIf="post.type!='shared'" class="post-content">
                 <p>{{ post.description }}</p>
                 <div *ngIf="post.image && post.image.length > 0">
                   <div *ngFor="let img of post.image">
+                    <img *ngIf="img.type!='video'" [src]="img?.path" alt="Post Image">
+                    <video controls *ngIf="img.type=='video'">
+                        <source [src]="img?.path">
+                      </video>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="post.type=='shared'" class="post-content">
+                <p>Reposted from {{post.original.user?.name}} </p>
+                <p>{{ post.description }}</p>
+                <p>{{ post.original.description }}</p>
+                <div *ngIf="post.original.image && post.original.image.length > 0">
+                  <div *ngFor="let img of post.original.image">
                     <img *ngIf="img.type!='video'" [src]="img?.path" alt="Post Image">
                     <video controls *ngIf="img.type=='video'">
                         <source [src]="img?.path">

@@ -23,7 +23,7 @@ class PostController extends Controller
          $skip = $request->query('skip');
 
          $posts = Post::where("user_id", $id)
-                 ->with("comment","like","comment.like","original")
+                 ->with("comment","like","comment.like","original","original.image","user","original.user")
                  ->orderBy('created_at', 'desc')
                  ->skip($skip)
                  ->take(5)
@@ -47,7 +47,7 @@ class PostController extends Controller
                                ->from('follows')
                                ->where('follower_id', $id);
                      })
-                     ->with('user', 'comment', 'like',"comment.like","original")
+                     ->with('user', 'comment', 'like',"comment.like","original","original.image","image","original.user")
                      ->orderBy('created_at', 'desc')
                      ->skip($skip)
                      ->take(5)
@@ -83,7 +83,7 @@ public function share(Request $request)
     ]);
 
     $post=Post::where("id",$sharedPost->id)
-    ->with('original')
+    ->with('original',"original.image","user")
     ->get();
 
     // Return a JSON response indicating success
@@ -152,7 +152,7 @@ public function share(Request $request)
     public function show($id)
     {
         $posts=Post::where("user_id", $id)
-        ->with("comment","like","comment.like","original")
+        ->with("comment","like","comment.like","original","original.image","user","original.user")
         ->get();
 
         return response()->json($posts);
