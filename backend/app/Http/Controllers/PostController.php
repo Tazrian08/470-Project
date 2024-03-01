@@ -66,24 +66,20 @@ class PostController extends Controller
      
 public function share(Request $request)
 {
-    // Validate the incoming request data
-    $validator = Validator::make($request->all(), [
-        'pid' => 'required|exists:posts,id',
-        'uid' => 'required|exists:users,id',
-        'description' => 'required|string',
-    ]);
+    if (!empty(trim($request->input('description')))){
+        $desc=$request->input('description');
 
-    // Check if the validation fails
-    if ($validator->fails()) {
-        return response()->json(['errors' => $validator->errors()], 422);
+    } else {
+
+        $desc="";
     }
 
     // Create the shared post
     $sharedPost = Post::create([
-        'user_id' => $request->uid,
+        'user_id' => $request->input('uid'),
         'type' => 'shared',
-        'shared_post_id' => $request->pid,
-        'description' => $request->description,
+        'shared_post_id' => $request->input('pid'),
+        'description' => $desc,
     ]);
 
     // Return a JSON response indicating success

@@ -15,6 +15,7 @@ class Post extends Model
         'type', 
         'description',
         'public',
+        'shared_post_id',
     ];
 
 

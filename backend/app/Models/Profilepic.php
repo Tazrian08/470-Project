@@ -13,6 +13,7 @@ class Profilepic extends Model
         'user_id',
         'path',
         'active',
+        'shared_post_id',
     ];
 
 
