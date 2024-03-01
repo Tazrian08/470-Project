@@ -38,6 +38,8 @@ Route::post('/follow', [UserController::class, 'follow']);
 //POST ROUTES
 Route::get("/loadposts", [PostController::class,"loadposts"]);
 Route::post("/post/create",[PostController::class,"create"]);
+Route::post("/post/share", [PostController::class,"share"]);
+
 
 
 //SKILL ROUTES

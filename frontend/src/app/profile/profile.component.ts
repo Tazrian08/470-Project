@@ -6,6 +6,7 @@ import { PostformdialogueService } from '../posts/postformdialogue.service';
 import { PropicService } from '../addpropic/propic.service';
 
 import { UserService } from '../profile/user.service';
+import { PostService } from './post.services';
 
 
 @Component({
@@ -45,7 +46,7 @@ export class ProfileComponent {
 
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute,private dialogService: PostformdialogueService, 
-    private dialogService1: PropicService, private userService: UserService){}
+    private dialogService1: PropicService, private userService: UserService, private postService: PostService){}
 
 
 
@@ -182,6 +183,23 @@ console.log(this.posts)
 
 
 })
+}
+
+sharePost(post_id: number) {
+  const user_id = this.auth_id;
+ 
+  const formData = new FormData();
+  formData.append('pid', post_id.toString());
+  formData.append('uid', user_id);
+
+  this.http.post('http://localhost:8000/api/post/share', formData).subscribe(
+    response => {
+      console.log('Post shared successfully:', response);
+    },
+    error => {
+      console.error('Error sharing post:', error);
+    }
+  );
 }
 
 
