@@ -123,8 +123,11 @@ onScroll(event: any) {
   if (pos === max) {
     console.log('Reached bottom of page!');
     // Load more posts when scrolled to the bottom
-    // this.currentPage++;
+    this.currentPage++;
+    
     this.loadPosts();
+    pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+    max = document.documentElement.scrollHeight;
   }
 }
 
