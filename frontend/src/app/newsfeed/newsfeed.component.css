@@ -28,13 +28,7 @@
 }
 @font-face {
     font-family: 'Caviar Dreams';
-        /* src: url('/assets/fonts/CaviarDreams-Bold.woff2') format('woff2'),
-            url('/assets/fonts/CaviarDreams-Bold.woff') format('woff'),
-            url('/assets/fonts/CaviarDreams-BoldItalic.woff2') format('woff2'),
-            url('/assets/fonts/CaviarDreams-Italic.woff2') format('woff2'),  */
             src:url('/assets/fonts/CaviarDreams.woff2') format('woff2'),
-            /* url('/assets/fonts/CaviarDreams-BoldItalic.woff') format('woff'),
-            url('/assets/fonts/CaviarDreams-Italic.woff') format('woff')     */
             url('/assets/fonts/CaviarDreams.woff') format('woff');
     font-weight: normal;
     font-style: normal;
@@ -45,14 +39,17 @@
 }
 
 .navbar {
-    background-color: rgba(51, 51, 51, 0);
+    background-color: black; /* Transparent background */
     overflow: hidden;
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
 }
 
 .navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    color: #ffffff;
 }
 
 .navbar li {
@@ -61,35 +58,33 @@
 
 .navbar li a {
     display: block;
-    color: black;
+    color: #fff; /* Text color */
     text-align: center;
-    padding: 14px 16px;
+    padding: 8px 16px;
     text-decoration: none;
+    border: 1px solid #fff; /* Border */
+    border-radius: 5px; /* Border radius */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
 }
 
 .navbar li a:hover {
-    background-color: rgba(51, 51, 51, 0.7);
+    background-color:white; /* Background color on hover */
+    color: #000; /* Text color on hover */
 }
 
 .navbar li.active a {
-    background-color: rgba(76, 175, 80, 0.7);
+    background-color: #fff; /* Background color for active state */
+    color: #000; /* Text color for active state */
 }
 
+
 .photo-container{
-    background-color: #f2f2f2;
+    background-color:  rgba(0, 0, 0, 0);;
 }
 .container1{
-    width: 100vw;
-    height: 80vh;
+   
     background-size: cover;
-    background-position: center;
-    background-image: url('/assets/images/white-woman-enjoying-weekend-concept.jpg');
-    background-color: #f2f2f2;
-    max-width: 100%;
-    display: block;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
+    
 }
 .container2{
     position: absolute;
@@ -242,8 +237,9 @@
 
   .mini-container5 {
     position: absolute;
-    top: 70vh;
-    width: 100%;
+    /* top: 70vh; */
+    width: 100vw;
+    height: 100vh;
     background-color: black;
     padding: 20px;
     color: #ffffff;
