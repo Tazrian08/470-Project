@@ -7,6 +7,7 @@ import { PropicService } from '../addpropic/propic.service';
 
 import { UserService } from '../profile/user.service';
 import { PostService } from './post.services';
+import { SharePostDialogService } from './sharepost.services';
 
 
 @Component({
@@ -50,7 +51,7 @@ export class ProfileComponent {
 
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute,private dialogService: PostformdialogueService, 
-    private dialogService1: PropicService, private userService: UserService, private postService: PostService){}
+    private dialogService1: PropicService, private userService: UserService, private postService: PostService, private sharePostDialogService: SharePostDialogService){}
 
 
 
@@ -162,12 +163,14 @@ goToskillform(id: string){
 
 }
 
-
+openSharePostDialog(post_id: string, description: string): void {
+  this.sharePostDialogService.openDialog(post_id, description);
+}
 
 followUser(userId: string) {
   const formData = new FormData();
     formData.append('followed_id',this.profile_id); 
-    formData.append('follower_id',this.auth_id); 
+    formData.append('follower_id',this.auth_id);
   
     this.http.post("http://localhost:8000/api/follow", formData).subscribe(
       (resultData: any) => {
