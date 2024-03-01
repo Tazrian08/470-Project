@@ -16,7 +16,7 @@
                     <label for="images" class="form-label">Image {{ i + 1 }}</label>
                     <input type="file" (change)="onFileSelected($event)" name="images{{ i }}" class="form-control" id="images" accept="image/*">
                 </div>
-                <button type="submit" class="btn btn-primary mt-4">Register</button>
+                <button type="submit" class="btn btn-primary mt-4">Post</button>
             </form>
             <button (click)="dialogRef.close()">Close</button>
         </div>
