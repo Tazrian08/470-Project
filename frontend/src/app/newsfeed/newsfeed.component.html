@@ -1,0 +1,73 @@
+<div class="photo-container">
+  <div class="container1">
+      <nav class="navbar">
+          <ul>
+              <!-- <li><a href="#">Explore</a></li> -->
+              <li><a [routerLink]="['/profile', authuser.id]">Profile</a></li>
+
+              <!-- <button (click)="openDialog()" class="logout-button">Button</button> -->
+          </ul>
+      </nav>
+          {{authuser?.id}}
+  </div>
+  <div class="container2">
+      <div class="mini-container1">
+          <!-- {{name}} -->
+      </div>
+      <div class="mini-container2">
+          <!-- {{about}} -->
+      </div>
+      <div class="mini-container4">
+          <!-- <button *ngIf="profile_id != authuser?.id && !follow" (click)="followUser(profile_id)" class="follow-button">Follow</button>
+          <button *ngIf="profile_id == authuser?.id" class="something-button" (click)="openDialog()">Make a Post</button>
+          <p *ngIf="profile_id != authuser?.id && follow">Following</p> -->
+      </div>
+      <!-- <div class="mini-container3">
+          <ul class="horizontal-list">
+              <li><a href="https://github.com/wasimaannan">GitHub</a></li>
+              <li><a href="https://facebook.com/wasimaannan">Facebook</a></li>
+              <li><a href="https://instagram.com/wasimaannan">Instagram</a></li>
+              <li><a href="https://linkedin.com/wasimaannan">LinkedIn</a></li>
+
+          </ul><br>
+
+      </div> -->
+
+
+
+
+
+  <div class="mini-container5">
+      <div class="content-wrapper">
+        <ul class="post-list">
+          <li *ngFor="let post of posts" class="post">
+              <div class="post-header">
+                  <div class="author-info">
+                      <span class="author-name">{{ authuser.name }}</span><br>
+                      <span>  at  </span>
+                      <span class="post-time">{{ post.created_at | date: 'shortTime' }}</span>
+                      <span>  on  </span>
+                      <span class="post-time">{{ post.created_at | date: 'shortDate' }}</span>
+                  </div>
+              </div>
+             <div class="post-content">
+              <p>{{ post.description }}</p>
+              <div *ngIf="post.image && post.image.length > 0">
+                <div *ngFor="let img of post.image">
+                  <img *ngIf="img.type!='video'" [src]="img?.path" alt="Post Image">
+                  <video controls *ngIf="img.type=='video'">
+                      <source [src]="img?.path">
+                    </video>
+                </div>
+              </div>
+            </div>
+            <div class="post-actions">
+              <button  class="post-button">Like</button>
+              <button  class="post-button">Comment</button>
+              <button  class="post-button">Share</button>
+          </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
