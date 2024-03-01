@@ -11,13 +11,14 @@
                     <label for="images" class="form-label">Image</label>
                     <input type="file" (change)="onFileSelected($event)" name="images" class="form-control" id="images" accept="image/*">
                 </div>
-                
+
                 <div class="mb-3" *ngFor="let file of selectedFilesArray; let i = index">
                     <label for="images" class="form-label">Image {{ i + 1 }}</label>
                     <input type="file" (change)="onFileSelected($event)" name="images{{ i }}" class="form-control" id="images" accept="image/*">
                 </div>
-                <button type="submit" class="btn btn-primary mt-4">Register</button>
+                <button type="submit" class="btn btn-primary mt-4">Upload</button>
             </form>
+            <br>
             <button (click)="dialogRef.close()">Close</button>
         </div>
     </div>
