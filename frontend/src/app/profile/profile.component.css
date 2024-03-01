@@ -246,7 +246,6 @@
     width: 100%;
     background-color: black;
     padding: 20px;
-    /* max-height: calc(100vh - 200px);  */
     color: #ffffff;
     overflow-y: auto; 
     overflow-x: hidden; 
