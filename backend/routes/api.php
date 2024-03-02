@@ -2,13 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HobbyController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProfilepicController;
-use App\Http\Controllers\FollowController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,6 +41,9 @@ Route::get("/loadposts", [PostController::class,"loadposts"]);
 Route::post("/post/create",[PostController::class,"create"]);
 Route::post("/post/share", [PostController::class,"share"]);
 
+
+//LIKE ROUTES
+Route::post("/post/like", [LikeController::class,"create"]);
 
 
 //FEED ROUTES

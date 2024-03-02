@@ -228,5 +228,27 @@ flagchanger(){
   }
 }
 
+like(post_id: string, user_id: string){
+
+ 
+  const formData = new FormData();
+  formData.append('pid', post_id);
+  formData.append('uid', user_id);
+
+  this.http.post('http://localhost:8000/api/post/like', formData).subscribe(
+    response => {
+      console.log('Liked successfully:', response);
+    },
+    error => {
+      console.error('Error liking:', error);
+    }
+  );
+
+}
+
+
+
+
+
 
 }
