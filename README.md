@@ -50,6 +50,10 @@ All posts with their images and/or videos and captions are primarily displayed i
 ![image](https://github.com/Tazrian08/470-Project/assets/144312101/6d7f9e62-677b-40b4-a253-5188bb3d3b03)
 
 
+The user can now also access a working Newsfeed where the posts of all the users they follower appear.
+
+![image](https://github.com/Tazrian08/470-Project/assets/144312101/a3589eab-a3ab-412f-a554-feae96a36a40)
+
 
 
 
