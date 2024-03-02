@@ -246,6 +246,17 @@ like(post_id: string, user_id: string){
 
 }
 
+deletepost(post_id: string){
+
+  this.http.delete(`http://localhost:8000/api/post/delete/${post_id}`).subscribe(
+    (res: any) => {
+      alert(res)
+      this. ngOnInit()
+    }
+  );
+
+}
+
 
 
 

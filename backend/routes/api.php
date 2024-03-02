@@ -40,6 +40,7 @@ Route::post('/follow', [UserController::class, 'follow']);
 Route::get("/loadposts", [PostController::class,"loadposts"]);
 Route::post("/post/create",[PostController::class,"create"]);
 Route::post("/post/share", [PostController::class,"share"]);
+Route::delete("/post/delete/{id}", [PostController::class,"destroy"]);
 
 
 //LIKE ROUTES
