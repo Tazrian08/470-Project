@@ -89,7 +89,7 @@
                 </div>
               </div>
               <div class="post-actions">
-                <button  class="post-button">Like</button>
+                <button (click)="like(post.id,authuser.id)" class="post-button">Like</button>
                 <button class="post-button">Comment</button>
                 <button class="post-button" *ngIf="flag && profile_id != authuser?.id" (click)="flagchanger()">Share</button>
                 <input class="post-button" *ngIf="!flag && profile_id != authuser?.id" type="email" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" class="form-control input-field" id="email" placeholder="Enter Description" required>

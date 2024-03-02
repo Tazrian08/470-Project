@@ -38,7 +38,7 @@
               </div>
             </div>
             <div class="post-actions">
-              <button  class="post-button">Like</button>
+              <button (click)="like(post.id,authuser.id)" class="post-button">Like</button>
               <button  class="post-button">Comment</button>
               <button  class="post-button">Share</button>
           </div>
