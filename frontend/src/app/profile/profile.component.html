@@ -91,6 +91,7 @@
               <div class="post-actions">
                 <button (click)="like(post.id,authuser.id)" class="post-button">Like</button>
                 <button class="post-button">Comment</button>
+                <button *ngIf="flag && profile_id == authuser?.id" (click)="deletepost(post.id)" class="post-button">Delete</button>
                 <button class="post-button" *ngIf="flag && profile_id != authuser?.id" (click)="flagchanger()">Share</button>
                 <input class="post-button" *ngIf="!flag && profile_id != authuser?.id" type="email" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" class="form-control input-field" id="email" placeholder="Enter Description" required>
                 <button *ngIf="!flag && profile_id != authuser?.id" (click)="openSharePostDialog(post.id, post.description)" class="post-button">Share</button>

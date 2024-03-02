@@ -177,8 +177,13 @@ public function share(Request $request)
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post=Post::find($id);
+
+        $post->delete();
+
+        
+        return response()->json("Removed");
     }
 }
