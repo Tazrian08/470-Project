@@ -10,6 +10,7 @@ use App\Http\Controllers\SkillController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProfilepicController;
+use App\Http\Controllers\ChatboxController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -70,6 +71,9 @@ Route::post("/addprofession",[ProfessionController::class,"create"]);
 
 //FOLLOW ROUTES
 Route::get('/followers/count/{id}', [FollowController::class, 'getFollowerCount']);
+
+//CHAT ROUTES
+Route::post("/messages", [ChatboxController::class,"message"]);
 
 
 Route::middleware('auth:sanctum')->group(function () {
