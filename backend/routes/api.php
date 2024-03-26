@@ -74,6 +74,8 @@ Route::get('/followers/count/{id}', [FollowController::class, 'getFollowerCount'
 
 //CHAT ROUTES
 Route::post("/messages", [ChatboxController::class,"message"]);
+Route::get("/chatbox/{profile_id}/{auth_id}", [ChatboxController::class, "checkChatbox"]);
+
 
 
 Route::middleware('auth:sanctum')->group(function () {

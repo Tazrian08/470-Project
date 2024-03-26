@@ -22,13 +22,13 @@ class ChatboxController extends Controller
     {
        
        $authId = $request->input('auth_id');
-       $receiverId = $request->input('receiver_id');
+      
        $messageContent = $request->input('message');
 
       
        $message = Message::create([
            'sender_id' => $authId,
-           'receiver_id' => $receiverId,
+        
            'message' => $messageContent,
        ]);
 
@@ -45,6 +45,33 @@ class ChatboxController extends Controller
        }
 
     }
+
+    public function checkChatbox($profileId, $authId)
+    {
+        $chatbox = Chatboi::where('user_id',$profileId)->first();
+
+        if($chatbox){
+            return response()->json(['chatbox_id'=>$chatbox_id]);
+        } else{
+            $newChatbox=Chatbox::create([
+                'admin_id' => $authId,
+                'name' => "Default",
+            ]);
+
+            Chatbois::create([
+                'user_id' => $authId,
+                'chatbox_id' => $newChatbox->id,
+            ]);
+    
+            Chatbois::create([
+                'user_id' => $profileId,
+                'chatbox_id' => $newChatbox->id,
+            ]);
+
+            return response()->json(['chatbox_id'=>$newChatbox->id]);
+        }
+    }
+    
 
     
 }

@@ -8,10 +8,11 @@
                 <li *ngIf="profile_id == authuser?.id"><a [routerLink]="['/contact', authuser?.id]">Contact </a></li>
                 <li *ngIf="profile_id != authuser?.id"><a [routerLink]="['/contact', profile_id]">Contact </a></li>
                 <li *ngIf="profile_id == authuser?.id"><a [routerLink]="['/feed', authuser?.id]">NewsFeed </a></li>
-                <li *ngIf="profile_id == authuser?.id"><a [routerLink]="['/chatbox', authuser?.id]">Chat </a></li>
+                <li *ngIf="profile_id != authuser?.id"><a [routerLink]="['/chatbox', authuser?.id]">Chat </a></li>
                 <li><a href="#">GitHub</a></li>
                 <li><a href="#">Collaborations</a></li>
-                <!-- <button (click)="openDialog()" class="logout-button">Button</button> -->
+                <button *ngIf="profile_id != authuser?.id" (click)="checkChatboxExists()" class="button">Chatbox</button>
+
             </ul>
         </nav>
         {{profile_id}}

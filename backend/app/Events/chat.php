@@ -20,7 +20,7 @@ class chat implements ShouldBroadcast
     public function __construct($message, $receiver_id)
     {
         $this->message=$message;
-        $this->receiver_id = $receiver_id;
+      
     }
 
     /**

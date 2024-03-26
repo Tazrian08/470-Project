@@ -46,7 +46,7 @@ export class ProfileComponent {
 
   flag:boolean=true
 
-
+  chatbox_id: any;
 
 
 
@@ -65,9 +65,13 @@ export class ProfileComponent {
       (res: any) => {
         this.authuser=res;
         this.auth_id = res.id;
+        console.log(this.auth_id);
         this.auth_followed = res.follower;
         Emitters.authEmitter.emit(true);
+
+        this.checkChatboxExists();
       });
+
     Emitters.authEmitter.subscribe(
       (data: any) => {
         this.auth= data;
@@ -97,7 +101,7 @@ export class ProfileComponent {
         this.posts=data.posts
         // this.posts.push(...data[0].post); 
         console.log(this.posts)
-       
+        console.log(this.id)
         this.profile_follower=data.user[0].followed
         // console.log(this.posts);
         });
@@ -257,7 +261,18 @@ deletepost(post_id: string){
 
 }
 
-
+checkChatboxExists() {
+  this.http.get<any>(`http://localhost:8000/api/chatbox/${this.profile_id}/${this.auth_id}`).subscribe(
+    (response: any) => {
+      this.chatbox_id = response.chatbox_id;
+      console.log('Chatbox ID:', this.chatbox_id);
+     
+    },
+    (error: any) => {
+      console.error('Error checking chatbox existence:', error);
+    }
+  );
+}
 
 
 
