@@ -8,6 +8,8 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -21,7 +23,7 @@ class PostController extends Controller
          $skip = $request->query('skip');
 
          $posts = Post::where("user_id", $id)
-                 ->with("comment","like","comment.like")
+                 ->with("comment","like","comment.like","original","original.image","user","original.user")
                  ->orderBy('created_at', 'desc')
                  ->skip($skip)
                  ->take(5)
@@ -30,7 +32,7 @@ class PostController extends Controller
 
         return response()->json($posts);
 
-         
+
          // Now you can use $id and $skip to fetch posts from the database
      }
 
@@ -45,7 +47,7 @@ class PostController extends Controller
                                ->from('follows')
                                ->where('follower_id', $id);
                      })
-                     ->with('user', 'comment', 'like',"comment.like")
+                     ->with('user', 'comment', 'like',"comment.like","original","original.image","image","original.user")
                      ->orderBy('created_at', 'desc')
                      ->skip($skip)
                      ->take(5)
@@ -54,22 +56,49 @@ class PostController extends Controller
 
         return response()->json($posts);
 
-         
+
          // Now you can use $id and $skip to fetch posts from the database
      }
 
 
     
-    public function index()
-    {
-        //
+
+     
+public function share(Request $request)
+{
+    if (!empty(trim($request->input('description')))){
+        $desc=$request->input('description');
+
+    } else {
+
+        $desc="";
     }
 
+    // Create the shared post
+    $sharedPost = Post::create([
+        'user_id' => $request->input('uid'),
+        'type' => 'shared',
+        'shared_post_id' => $request->input('pid'),
+        'description' => $desc,
+    ]);
+
+    $post=Post::where("id",$sharedPost->id)
+    ->with('original',"original.image","user")
+    ->get();
+
+    // Return a JSON response indicating success
+    return response()->json(['message' => 'Post shared successfully', 'post' => $post]);
+}
+
+     
+
+     
+     
     /**
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
-    {   
+    {
         $data=$request->files;
         $length=$data->count();
         $user=User::find($request->input('user_id'));
@@ -88,10 +117,10 @@ class PostController extends Controller
                 if ($extension)
                 // Generate a unique filename for each file
                 $filename = time() . '-' . $user->id . '.' . $i . $file->extension();
-                
+
                 // Move the file to the desired directory
                 $file->move(public_path('images'), $filename);
-                
+
                 // Create the database entry for the file
                 $path = asset('images/' . $filename);
                 $image = Image::create([
@@ -123,7 +152,7 @@ class PostController extends Controller
     public function show($id)
     {
         $posts=Post::where("user_id", $id)
-        ->with("comment","like","comment.like")
+        ->with("comment","like","comment.like","original","original.image","user","original.user")
         ->get();
 
         return response()->json($posts);
@@ -148,8 +177,13 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post=Post::find($id);
+
+        $post->delete();
+
+        
+        return response()->json("Removed");
     }
 }

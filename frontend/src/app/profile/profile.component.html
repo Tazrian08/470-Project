@@ -8,9 +8,11 @@
                 <li *ngIf="profile_id == authuser?.id"><a [routerLink]="['/contact', authuser?.id]">Contact </a></li>
                 <li *ngIf="profile_id != authuser?.id"><a [routerLink]="['/contact', profile_id]">Contact </a></li>
                 <li *ngIf="profile_id == authuser?.id"><a [routerLink]="['/feed', authuser?.id]">NewsFeed </a></li>
+                <li *ngIf="profile_id != authuser?.id"><a [routerLink]="['/chatbox', authuser?.id]">Chat </a></li>
                 <li><a href="#">GitHub</a></li>
                 <li><a href="#">Collaborations</a></li>
-                <!-- <button (click)="openDialog()" class="logout-button">Button</button> -->
+                <button *ngIf="profile_id != authuser?.id" (click)="checkChatboxExists()" class="button">Chatbox</button>
+
             </ul>
         </nav>
         {{profile_id}}
@@ -35,13 +37,13 @@
                 <li><a href="https://facebook.com/wasimaannan">Facebook</a></li>
                 <li><a href="https://instagram.com/wasimaannan">Instagram</a></li>
                 <li><a href="https://linkedin.com/wasimaannan">LinkedIn</a></li>
-              
-            </ul><br>
-    
-        </div>
-        
 
-    
+            </ul><br>
+
+        </div>
+
+
+
     <div *ngIf="profile_id==authuser?.id"  (click)="openpropic()" class="container3">
         <img [src]="profilepic?.path" alt="" class="profile-picture">
         <div class="hover-message">Add Profile Picture</div>
@@ -50,7 +52,7 @@
         <img [src]="profilepic?.path" alt="" class="profile-picture">
         <div class="hover-message">Add Profile Picture</div>
     </div>
-   
+
     <div class="mini-container5">
         <div class="content-wrapper">
           <ul class="post-list">
@@ -59,12 +61,12 @@
                     <div class="author-info">
                         <span class="author-name">{{ name }}</span><br>
                         <span>  at  </span>
-                        <span class="post-time">{{ post.created_at | date: 'shortTime' }}</span> 
+                        <span class="post-time">{{ post.created_at | date: 'shortTime' }}</span>
                         <span>  on  </span>
                         <span class="post-time">{{ post.created_at | date: 'shortDate' }}</span>
                     </div>
                 </div>
-               <div class="post-content">
+               <div *ngIf="post.type!='shared'" class="post-content">
                 <p>{{ post.description }}</p>
                 <div *ngIf="post.image && post.image.length > 0">
                   <div *ngFor="let img of post.image">
@@ -75,13 +77,35 @@
                   </div>
                 </div>
               </div>
+              <div *ngIf="post.type=='shared'" class="post-content">
+                <p>Reposted from {{post.original.user?.name}} </p>
+                <p>{{ post.description }}</p>
+                <p>{{ post.original.description }}</p>
+                <div *ngIf="post.original.image && post.original.image.length > 0">
+                  <div *ngFor="let img of post.original.image">
+                    <img *ngIf="img.type!='video'" [src]="img?.path" alt="Post Image">
+                    <video controls *ngIf="img.type=='video'">
+                        <source [src]="img?.path">
+                      </video>
+                  </div>
+                </div>
+              </div>
               <div class="post-actions">
-                <button  class="post-button">Like</button>
-                <button  class="post-button">Comment</button>
-                <button  class="post-button">Share</button>
+                <button (click)="like(post.id,authuser.id)" class="post-button">Like</button>
+                <button class="post-button">Comment</button>
+                <button *ngIf="flag && profile_id == authuser?.id" (click)="deletepost(post.id)" class="post-button">Delete</button>
+                <button class="post-button" *ngIf="flag && profile_id != authuser?.id" (click)="flagchanger()">Share</button>
+                <input class="post-button" *ngIf="!flag && profile_id != authuser?.id" type="email" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" class="form-control input-field" id="email" placeholder="Enter Description" required>
+                <button *ngIf="!flag && profile_id != authuser?.id" (click)="openSharePostDialog(post.id, post.description)" class="post-button">Share</button>
+                <button class="post-button" *ngIf="!flag && profile_id != authuser?.id" (click)="flagchanger()">Cancel</button>
             </div>
             </li>
           </ul>
         </div>
       </div>
     </div>
+
+
+
+
+  

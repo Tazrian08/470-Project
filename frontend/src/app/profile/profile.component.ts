@@ -6,6 +6,8 @@ import { PostformdialogueService } from '../posts/postformdialogue.service';
 import { PropicService } from '../addpropic/propic.service';
 
 import { UserService } from '../profile/user.service';
+import { PostService } from './post.services';
+import { SharePostDialogService } from './sharepost.services';
 
 
 @Component({
@@ -40,12 +42,16 @@ export class ProfileComponent {
 
   profile_follower:any
 
+  description=""
 
+  flag:boolean=true
+
+  chatbox_id: any;
 
 
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute,private dialogService: PostformdialogueService, 
-    private dialogService1: PropicService, private userService: UserService){}
+    private dialogService1: PropicService, private userService: UserService, private postService: PostService, private sharePostDialogService: SharePostDialogService){}
 
 
 
@@ -59,9 +65,13 @@ export class ProfileComponent {
       (res: any) => {
         this.authuser=res;
         this.auth_id = res.id;
+        console.log(this.auth_id);
         this.auth_followed = res.follower;
         Emitters.authEmitter.emit(true);
+
+        this.checkChatboxExists();
       });
+
     Emitters.authEmitter.subscribe(
       (data: any) => {
         this.auth= data;
@@ -91,7 +101,7 @@ export class ProfileComponent {
         this.posts=data.posts
         // this.posts.push(...data[0].post); 
         console.log(this.posts)
-       
+        console.log(this.id)
         this.profile_follower=data.user[0].followed
         // console.log(this.posts);
         });
@@ -157,12 +167,14 @@ goToskillform(id: string){
 
 }
 
-
+openSharePostDialog(post_id: string, description: string): void {
+  this.sharePostDialogService.openDialog(post_id, description);
+}
 
 followUser(userId: string) {
   const formData = new FormData();
     formData.append('followed_id',this.profile_id); 
-    formData.append('follower_id',this.auth_id); 
+    formData.append('follower_id',this.auth_id);
   
     this.http.post("http://localhost:8000/api/follow", formData).subscribe(
       (resultData: any) => {
@@ -189,6 +201,80 @@ console.log(this.posts)
 
 })
 }
+
+sharePost(post_id: string,description: string) {
+  const user_id = this.auth_id;
+ 
+  const formData = new FormData();
+  formData.append('pid', post_id);
+  formData.append('uid', user_id);
+  formData.append('description', description);
+
+  this.http.post('http://localhost:8000/api/post/share', formData).subscribe(
+    response => {
+      console.log('Post shared successfully:', response);
+    },
+    error => {
+      console.error('Error sharing post:', error);
+    }
+  );
+  this.description=""
+  this.flagchanger()
+}
+
+
+flagchanger(){
+
+  if (this.flag==true){
+    this.flag=false
+  } else {
+    this.flag=true
+  }
+}
+
+like(post_id: string, user_id: string){
+
+ 
+  const formData = new FormData();
+  formData.append('pid', post_id);
+  formData.append('uid', user_id);
+
+  this.http.post('http://localhost:8000/api/post/like', formData).subscribe(
+    response => {
+      console.log('Liked successfully:', response);
+    },
+    error => {
+      console.error('Error liking:', error);
+    }
+  );
+
+}
+
+deletepost(post_id: string){
+
+  this.http.delete(`http://localhost:8000/api/post/delete/${post_id}`).subscribe(
+    (res: any) => {
+      alert(res)
+      this. ngOnInit()
+    }
+  );
+
+}
+
+checkChatboxExists() {
+  this.http.get<any>(`http://localhost:8000/api/chatbox/${this.profile_id}/${this.auth_id}`).subscribe(
+    (response: any) => {
+      this.chatbox_id = response.chatbox_id;
+      console.log('Chatbox ID:', this.chatbox_id);
+     
+    },
+    (error: any) => {
+      console.error('Error checking chatbox existence:', error);
+    }
+  );
+}
+
+
 
 
 }

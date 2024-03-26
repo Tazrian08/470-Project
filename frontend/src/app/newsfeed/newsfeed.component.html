@@ -1,0 +1,49 @@
+<div class="photo-container">
+  
+        <nav class="navbar">
+            <ul>
+                <li><a [routerLink]="['/profile', authuser.id]">Profile</a></li>
+                <li><a href="#">Explore</a></li>
+                <li><a href="#">GitHub</a></li>
+                <li><a href="#">Collaborations</a></li>
+                <li><a href="#">Messages</a></li>
+                <li><a href="#">Notifications</a></li>
+            </ul>
+            {{authuser?.id}}
+        </nav>
+       
+            
+  <div class="mini-container5">
+      <div class="content-wrapper">
+        <ul class="post-list">
+          <li *ngFor="let post of posts" class="post">
+              <div class="post-header">
+                  <div class="author-info">
+                      <span class="author-name">{{ post.user.name }}</span><br>
+                      <span>  at  </span>
+                      <span class="post-time">{{ post.created_at | date: 'shortTime' }}</span>
+                      <span>  on  </span>
+                      <span class="post-time">{{ post.created_at | date: 'shortDate' }}</span>
+                  </div>
+              </div>
+             <div class="post-content">
+              <p>{{ post.description }}</p>
+              <div *ngIf="post.image && post.image.length > 0">
+                <div *ngFor="let img of post.image">
+                  <img *ngIf="img.type!='video'" [src]="img?.path" alt="Post Image">
+                  <video controls *ngIf="img.type=='video'">
+                      <source [src]="img?.path">
+                    </video>
+                </div>
+              </div>
+            </div>
+            <div class="post-actions">
+              <button (click)="like(post.id,authuser.id)" class="post-button">Like</button>
+              <button  class="post-button">Comment</button>
+              <button  class="post-button">Share</button>
+          </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

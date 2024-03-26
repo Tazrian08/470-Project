@@ -15,6 +15,7 @@ export class NewsfeedComponent {
   auth:boolean=false
   posts:any
 
+
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute){}
 
   ngOnInit(): void {
@@ -32,7 +33,7 @@ export class NewsfeedComponent {
       (data: any) => {
         this.auth= data;
       });
-    
+
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -45,7 +46,7 @@ export class NewsfeedComponent {
     if (pos === max) {
       console.log('Reached bottom of page!');
       // Load more posts when scrolled to the bottom
-      
+
       this.loadfeed();
       pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
       max = document.documentElement.scrollHeight;
@@ -58,9 +59,28 @@ export class NewsfeedComponent {
       (data: any) => {
   this.posts.push(...data);
   console.log(this.posts)
-  
-  
+
+
   })
+  }
+
+
+  like(post_id: string, user_id: string){
+
+ 
+    const formData = new FormData();
+    formData.append('pid', post_id);
+    formData.append('uid', user_id);
+  
+    this.http.post('http://localhost:8000/api/post/like', formData).subscribe(
+      response => {
+        console.log('Liked successfully:', response);
+      },
+      error => {
+        console.error('Error liking:', error);
+      }
+    );
+  
   }
 
 

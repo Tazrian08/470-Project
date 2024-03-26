@@ -2,13 +2,15 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HobbyController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProfilepicController;
-use App\Http\Controllers\FollowController;
+use App\Http\Controllers\ChatboxController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,6 +40,12 @@ Route::post('/follow', [UserController::class, 'follow']);
 //POST ROUTES
 Route::get("/loadposts", [PostController::class,"loadposts"]);
 Route::post("/post/create",[PostController::class,"create"]);
+Route::post("/post/share", [PostController::class,"share"]);
+Route::delete("/post/delete/{id}", [PostController::class,"destroy"]);
+
+
+//LIKE ROUTES
+Route::post("/post/like", [LikeController::class,"create"]);
 
 
 //FEED ROUTES
@@ -63,6 +71,11 @@ Route::post("/addprofession",[ProfessionController::class,"create"]);
 
 //FOLLOW ROUTES
 Route::get('/followers/count/{id}', [FollowController::class, 'getFollowerCount']);
+
+//CHAT ROUTES
+Route::post("/messages", [ChatboxController::class,"message"]);
+Route::get("/chatbox/{profile_id}/{auth_id}", [ChatboxController::class, "checkChatbox"]);
+
 
 
 Route::middleware('auth:sanctum')->group(function () {

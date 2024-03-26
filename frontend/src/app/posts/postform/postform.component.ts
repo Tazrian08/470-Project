@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { Emitters } from 'src/app/Emitters/emitters';
 
+
 @Component({
   selector: 'app-postform',
   templateUrl: './postform.component.html',
@@ -13,8 +14,7 @@ export class PostformComponent {
   selectedFilesArray: File[] = [];
   auth_id=""
   auth:boolean=false
-
-  constructor(public dialogRef: MatDialogRef<PostformComponent>, private http: HttpClient) {}
+  constructor(public dialogRef: MatDialogRef<PostformComponent>, private http: HttpClient, ) {}
 
 
   ngOnInit(): void {
@@ -66,6 +66,7 @@ export class PostformComponent {
     );
   }
 
+
   onFileSelected(event: any) {
     const files = event.target.files;
     if (files) {
@@ -74,4 +75,6 @@ export class PostformComponent {
         }
     }
   }
+
+  
 }

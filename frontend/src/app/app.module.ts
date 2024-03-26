@@ -21,6 +21,7 @@ import { SkillsFormComponent } from './skills-form/skills-form.component';
 import { AddprofessionComponent } from './addprofession/addprofession.component';
 import { HomeComponent } from './home/home.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
+import { ChatboxComponent } from './chatbox/chatbox.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { NewsfeedComponent } from './newsfeed/newsfeed.component';
     ContactComponent,
     HobbyaddComponent,  
     SkillsFormComponent, AddprofessionComponent,  
-    SkillsFormComponent, HomeComponent, NewsfeedComponent,  
+    SkillsFormComponent, HomeComponent, NewsfeedComponent, ChatboxComponent,  
   ],
   imports: [
     BrowserModule,

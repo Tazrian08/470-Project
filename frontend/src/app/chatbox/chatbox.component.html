@@ -1,0 +1,8 @@
+<p>chatbox works!</p>
+<div class="container">
+  <form (submit)="submit()">
+    <input class="form-control mb-2" placeholder="Receiver ID" [(ngModel)]="receiver_id" name="receiver_id"/>
+    <input class="form-control mb-2" placeholder="Write a message" [(ngModel)]="message" name="message"/>
+    <button (click)="submit()" class="btn btn-primary" type="submit">Send</button>
+  </form>
+</div>
