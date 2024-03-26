@@ -69,7 +69,6 @@ export class ProfileComponent {
         this.auth_followed = res.follower;
         Emitters.authEmitter.emit(true);
 
-        this.checkChatboxExists();
       });
 
     Emitters.authEmitter.subscribe(
@@ -261,8 +260,8 @@ deletepost(post_id: string){
 
 }
 
-checkChatboxExists() {
-  this.http.get<any>(`http://localhost:8000/api/chatbox/${this.profile_id}/${this.auth_id}`).subscribe(
+checkChatboxExists(auth_id: string, profile_id:string) {
+  this.http.get<any>(`http://localhost:8000/api/chatbox/${profile_id}/${auth_id}`).subscribe(
     (response: any) => {
       this.chatbox_id = response.chatbox_id;
       console.log('Chatbox ID:', this.chatbox_id);

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\ChatEvent;
+use App\Events\chat;
+use App\Models\User;
+use App\Models\Chatboi;
 use App\Models\Chatbox;
+
 use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreChatboxRequest;
@@ -28,14 +31,14 @@ class ChatboxController extends Controller
       
        $message = Message::create([
            'sender_id' => $authId,
-        
+           'chatbox_id'=>4,
            'message' => $messageContent,
        ]);
 
        
        if ($message) {
      
-           event(new ChatEvent($message));
+           event(new chat($message,2));
 
           
            return response()->json(['message' => 'Message sent successfully'], 200);
@@ -48,22 +51,33 @@ class ChatboxController extends Controller
 
     public function checkChatbox($profileId, $authId)
     {
-        $chatbox = Chatboi::where('user_id',$profileId)->first();
+        $chatbox = Chatbox::whereHas('chatboi', function($query) use ($profileId, $authId) {
+            $query->whereIn('user_id', [$profileId, $authId])
+                  ->havingRaw('COUNT(DISTINCT user_id) = 2');
+        })
+        ->has('chatboi', '=', 2)
+        ->get();
 
-        if($chatbox){
-            return response()->json(['chatbox_id'=>$chatbox_id]);
+        $auth_user=User::where("id",$authId)->get();
+        $pro_user=User::where("id",$profileId)->get();
+
+
+
+        if($chatbox->isNotEmpty()){
+            return response()->json(['chatbox_id'=>$chatbox[0]->id]);
         } else{
+            $name=$auth_user[0]->name . "-" . $pro_user[0]->name;
             $newChatbox=Chatbox::create([
                 'admin_id' => $authId,
-                'name' => "Default",
+                'name' => $name,
             ]);
 
-            Chatbois::create([
+            Chatboi::create([
                 'user_id' => $authId,
                 'chatbox_id' => $newChatbox->id,
             ]);
     
-            Chatbois::create([
+            Chatboi::create([
                 'user_id' => $profileId,
                 'chatbox_id' => $newChatbox->id,
             ]);

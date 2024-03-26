@@ -74,6 +74,7 @@ export class ChatboxComponent {
     const channel = pusher.subscribe('chatbox');
     channel.bind('chat', (data: any) => { // Specify the type of 'data'
       this.messages.push(data);
+      console.log(this.messages)
     });
   }
 
@@ -92,7 +93,10 @@ export class ChatboxComponent {
       (error: any) => {
         console.error('Error sending:', error);
       }
+      
     );
+
+
   
   
 }
