@@ -71,9 +71,10 @@ export class ChatboxComponent {
       cluster: 'ap1'
     });
 
-    const channel = pusher.subscribe('chatbox');
-    channel.bind('chat', (data: any) => { // Specify the type of 'data'
+    const channel = pusher.subscribe('chat');
+    channel.bind('message', (data: any) => { // Specify the type of 'data'
       this.messages.push(data);
+      console.log(data)
       console.log(this.messages)
     });
   }
@@ -86,7 +87,6 @@ export class ChatboxComponent {
   
     this.http.post("http://localhost:8000/api/messages", formData).subscribe(
       (resultData: any) => {
-        console.log(resultData); 
         this.message= '';
         alert("sent");
       },
