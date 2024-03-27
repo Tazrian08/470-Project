@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'addprofession/:id', component: AddprofessionComponent},
   {path: 'home', component: HomeComponent},
   {path: "feed/:id", component: NewsfeedComponent},
-  {path: 'chatbox/:auth_id', component: ChatboxComponent},
+  {path: "chatbox/:id", component: ChatboxComponent},
 ];
 
 @NgModule({

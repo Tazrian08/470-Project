@@ -271,6 +271,7 @@ checkChatboxExists(auth_id: string, profile_id:string) {
       console.error('Error checking chatbox existence:', error);
     }
   );
+  this.router.navigate(['/chatbox', this.chatbox_id]);
 }
 
 

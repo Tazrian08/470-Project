@@ -36,7 +36,6 @@ Route::post("/hobbies", [UserController::class, "addHobby"]);
 Route::post('/follow', [UserController::class, 'follow']);
 
 
-
 //POST ROUTES
 Route::get("/loadposts", [PostController::class,"loadposts"]);
 Route::post("/post/create",[PostController::class,"create"]);
@@ -75,6 +74,7 @@ Route::get('/followers/count/{id}', [FollowController::class, 'getFollowerCount'
 //CHAT ROUTES
 Route::post("/messages", [ChatboxController::class,"message"]);
 Route::get("/chatbox/{profile_id}/{auth_id}", [ChatboxController::class, "checkChatbox"]);
+Route::get("/chatbox/{id}", [ChatboxController::class,"index"]);
 
 
 

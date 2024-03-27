@@ -21,6 +21,13 @@ class ChatboxController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function index($id){
+        $chatbox=Chatbox::where('id',$id)
+        ->with('message','message.user')
+        ->get();
+        return response()->json($chatbox);
+    }
+
     public function message(Request $request)
     {
        

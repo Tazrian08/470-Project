@@ -16,7 +16,7 @@ export class ChatboxComponent {
   username = 'username';
   message = '';
   messages: any[] = [];
-
+  chatbox_id = "";
   authuser: any
   user: any;
   auth: boolean = false;
@@ -30,7 +30,12 @@ export class ChatboxComponent {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.chatbox_id = params['id'];
     // this.profileload();
+    this.http.get(`http://localhost:8000/api/chatbox/${this.chatbox_id}`).subscribe(
+        (data: any) => {console.log(data)});
+    });
     
 
     this.http.get('http://localhost:8000/api/user', {withCredentials: true}).subscribe(
@@ -43,7 +48,9 @@ export class ChatboxComponent {
       (data: any) => {
         this.auth= data;
       });
-    
+      
+      
+      
 
 
   // }
