@@ -86,9 +86,9 @@ export class ChatboxComponent {
 
     const channel = pusher.subscribe('chat');
     channel.bind('message', (data: any) => { // Specify the type of 'data'
-      this.messages.push(data);
-      console.log(data)
-      console.log(this.messages)
+      this.messages.push(data['message']);
+      // console.log(data);
+      console.log(this.messages);
     });
   }
 
