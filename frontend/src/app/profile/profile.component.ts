@@ -265,13 +265,14 @@ checkChatboxExists(auth_id: string, profile_id:string) {
     (response: any) => {
       this.chatbox_id = response.chatbox_id;
       console.log('Chatbox ID:', this.chatbox_id);
+      this.router.navigate(['/chatbox', this.chatbox_id]);
      
     },
     (error: any) => {
       console.error('Error checking chatbox existence:', error);
     }
   );
-  this.router.navigate(['/chatbox', this.chatbox_id]);
+  
 }
 
 
