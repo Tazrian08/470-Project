@@ -34,7 +34,12 @@ export class ChatboxComponent {
       this.chatbox_id = params['id'];
     // this.profileload();
     this.http.get(`http://localhost:8000/api/chatbox/${this.chatbox_id}`).subscribe(
-        (data: any) => {console.log(data)});
+        (data: any) => {
+          console.log(data)
+          this.messages = data.message;
+          console.log(this.messages)
+        });
+        
     });
     
 
@@ -42,6 +47,7 @@ export class ChatboxComponent {
       (res: any) => {
         this.authuser=res;
         this.auth_id = res.id;
+        console.log(this.auth_id);
         Emitters.authEmitter.emit(true);
       });
     Emitters.authEmitter.subscribe(
@@ -89,7 +95,7 @@ export class ChatboxComponent {
   submit(): void {
     const formData = new FormData();
     formData.append('auth_id',this.auth_id); 
-    formData.append('receiver_id',this.receiver_id);
+    formData.append('chatbox_id',this.chatbox_id);
     formData.append('message',this.message);
   
     this.http.post("http://localhost:8000/api/messages", formData).subscribe(

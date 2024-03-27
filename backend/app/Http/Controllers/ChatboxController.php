@@ -25,7 +25,7 @@ class ChatboxController extends Controller
         $chatbox=Chatbox::where('id',$id)
         ->with('message','message.user')
         ->get();
-        return response()->json($chatbox);
+        return response()->json($chatbox[0]);
     }
 
     public function message(Request $request)
@@ -38,7 +38,7 @@ class ChatboxController extends Controller
       
        $message = Message::create([
            'sender_id' => $authId,
-           'chatbox_id'=>4,
+           'chatbox_id'=>$request->input('chatbox_id'),
            'message' => $messageContent,
        ]);
 
